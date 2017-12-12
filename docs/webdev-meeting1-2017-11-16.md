@@ -7,19 +7,19 @@ We need navigation (on the left
 Nav bar:  
 blog posts  
 projects  
-    puzzles - people 
+....puzzles - people 
 a gallery  
-    all the puzzles (captions)  
+....all the puzzles (captions)  
 about  
-    mission  
-    participants  
+....mission  
+....participants  
 publications/press  
-    essays  
-    talks  
+....essays  
+....talks  
 online puzzles (jeremy's stuff)  
 for educators  
-    lesson plans (for different ages)  
-    cut-out a puzzle  
+....lesson plans (for different ages)  
+....cut-out a puzzle  
     
 Delegation: who does what? 
 
