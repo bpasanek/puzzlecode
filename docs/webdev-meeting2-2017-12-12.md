@@ -8,7 +8,7 @@ Here's a code snippet for pulling posts from that folder and putting up online:
 
 ```{% for post in site.posts %}
 <a href="{{ site.baseurl }}/{{ post.url }}">{{ post.title }}</a>
-{% endfor %}```
+{% endfor %} ```
 
 Was tested on the main page and worked.
 
@@ -35,7 +35,7 @@ Jeremy really likes Jekyll data files
 
 Have a single file then that is a people.yml file
 
-remember ```jekyll serve --watch```
+remember ```jekyll serve --watch ```
 
 There is good Jekyll documentation on data files.
 
