@@ -1,4 +1,4 @@
-###Second Meeting - 12/12/2017
+### Second Meeting - 12/12/2017
 
 Jeremy Boggs and Tim Schott (in SLab)
 
