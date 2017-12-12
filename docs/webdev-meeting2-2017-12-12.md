@@ -6,9 +6,9 @@ Brad added a folder _posts to put Blogging stuff in
 
 Here's a code snippet for pulling posts from that folder and putting up online:
 
-{% for post in site.posts %}
+```{% for post in site.posts %}
 <a href="{{ site.baseurl }}/{{ post.url }}">{{ post.title }}</a>
-{% endfor %}
+{% endfor %}```
 
 Was tested on the main page and worked.
 
@@ -27,7 +27,7 @@ Should a poem have a repository...? maybe some of the bigger projects could. The
 Back to the metadata question:  
 Collect people as slugs  
 e.g. neal-curtis  
-Then you have a _people folder with all their information: dept, email, etc.
+Then you have a \_people folder with all their information: dept, email, etc.
 
 This is how Slab is doing it.
 
@@ -35,7 +35,7 @@ Jeremy really likes Jekyll data files
 
 Have a single file then that is a people.yml file
 
-remember jekyll serve --watch
+remember ```jekyll serve --watch```
 
 There is good Jekyll documentation on data files.
 
@@ -47,8 +47,8 @@ Reflections on
 [Crossword Puzzle from urban dictionary...]
 
 Tips and tricks:  
-git branch  
-git branch -r  
+```git branch  
+git branch -r  ```
 
 CSS style sheet can be referenced for Jekyll. Needs some empty yml frontmatter in the top of the file.
 
