@@ -6,17 +6,19 @@ Brad added a folder _posts to put Blogging stuff in
 
 Here's a code snippet for pulling posts from that folder and putting up online:
 
-```{% for post in site.posts %}
+~~~~
+{% for post in site.posts %}
 <a href="{{ site.baseurl }}/{{ post.url }}">{{ post.title }}</a>
-{% endfor %} ```
+{% endfor %}
+~~~~
 
 Was tested on the main page and worked.
 
-An example of a Jekyll site that Jeremy made:  Jeremyboggs.github.io
+An example of a Jekyll site that Jeremy made: [jeremyboggs.github.io](http://jeremyboggs.github.io)
 
 Restyle our theme?  
 Need a layouts folder and at least one: a default.
-Jeremy trying it at gh-pages -- making a _layouts folder
+Jeremy trying it at gh-pages -- making a \_layouts folder
 
 (I'll add one to gh-pages.)
  
@@ -35,7 +37,7 @@ Jeremy really likes Jekyll data files
 
 Have a single file then that is a people.yml file
 
-remember ```jekyll serve --watch ```
+remember `jekyll serve --watch `
 
 There is good Jekyll documentation on data files.
 
@@ -47,8 +49,10 @@ Reflections on
 [Crossword Puzzle from urban dictionary...]
 
 Tips and tricks:  
-```git branch  
-git branch -r  ```
+~~~~
+git branch  
+git branch -r
+~~~~
 
 CSS style sheet can be referenced for Jekyll. Needs some empty yml frontmatter in the top of the file.
 
