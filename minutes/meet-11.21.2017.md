@@ -1,5 +1,7 @@
 ## Meeting
+11/21/2017
 
+### In attendance
 Neal Curtis  
 Jordan Buysse  
 Jordan Burke  
