@@ -3,6 +3,9 @@
 
 =======
 >>>>>>> b61f471d1a2b19230552938100c8805023edba4d
+
+
+Monday 11:30 
 This is the main git for UVa's Puzzle Poetry group.
 
 This repository will eventually house code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. Currently this readme file narrowly addresses a project involving Shakespeare's "procreation" sonnets (Sonnets 1 to 17). 
