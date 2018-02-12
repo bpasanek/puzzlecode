@@ -1,7 +1,7 @@
 # Puzzle Poesis
 This is the main git for UVa's Puzzle Poetry group.
 
-This repository will eventually house code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. Currently this readme file narrowly addresses a project involving Shakespeare's "procreation" sonnets (Sonnets 1 to 17). 
+This repository houses  our code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. Currently this readme file narrowly addresses a project involving Shakespeare's "procreation" sonnets (Sonnets 1 to 17). This term we've been matching poem shapes to sestets with success and are working on generating a list of possible polyomino solutions for the octave.
 
 ### The Puzzle Project
 The group is working to convert a sequence of Shakespeare's sonnets into pentomino puzzles. These will be laser cut from wood, acrylic, and other materials, and then assembled as an art-object titled _Increase_. Preparing the the puzzles requires finding ways to pack pentomino shapes into a sonnet-shaped frame. Working by hand, we've carved up several sonnets into a set of pentomino shapes but we hope to do better, finding all possible solutions to our sequence of sonnets, that is, all the ways that a given sonnet can be cut up into pentomino shapes.
@@ -14,9 +14,22 @@ An example of a puzzle created by hand (Sonnet 1):
 
 ![Sonnet 1, cut up by hand](/images/sonnet1.jpg)
 
-### The Puzzle Solver: Overview
+An example of a sonnet sestet (the last 6 lines of a sonnet) solved, that is, matched against a solution to the polyomino problem that packs 12 pentominos into a 6x10 grid: 
 
-Pentomino puzzles can also be solved computationally, and therefore exhaustively. Katherine Holcomb has adapted and uploaded C++ code that leverages 4 different puzzle-solving algorithms (DLX, 2. MCH, EMCH, de Bruijn). Unpack the tarball polycube.tgz for code, modules, and makefiles.
+![Sonnet 12, sestet, laser cut](/images/sonnet12-sestet-wb.jpg)
+
+### Puzzle Solving: Overview
+
+Pentomino puzzles can also be solved computationally, and therefore exhaustively. In some cases, the solutions to a particular pentomino solution are available online. Sestets, which are 6x10 shapes (six lines of pentameter verse) are easily matched to the list of solutions we downloaded from 
+
+The octave of a sonnet is another matter. There are 3,386,001,688 solutions to the octave polyomino problem that uses each pentomino and each tetromino once to tile an 8x10 grid.
+
+#### Solving the Octave in Python
+
+We are currently running a Python solver designed by David J. Goodger and tweaked (slightly) by Brad Pasanek to print out puzzle solutions more compactly. On Rivanna, we've generated as many as 9 million solutions in 3 days. Unfortunately, this means it's going to take us as many as 6 years to get through all possible solutions. Matching poems to solutions will go more quickly, of course, but this is where we are stuck currently. Perhaps we will be able to parallelize the Python to run several solvers at the same time; or perhaps we should try with a different solving routine in a new language. (ARCS at UVa reports that changing from Python to C might help us gain an order of magnitude in speed.)
+
+#### Solving the Octave in C
+Katherine Holcomb has adapted and uploaded here C++ code that leverages 4 different puzzle-solving algorithms (DLX, 2. MCH, EMCH, de Bruijn). Unpack the tarball polycube.tgz for code, modules, and makefiles.
 
 Katherine includes the following instructions:
 1. module load gcc/4.8.2  -- it *will not* link with the default 5.4.0 because boost was built with 4.8.2
@@ -24,10 +37,7 @@ Katherine includes the following instructions:
 3. cd src
 4. make
 
-In one canonical pentomino puzzle, the 12 pentomino pieces are packed into a 6 x 10 grid. This 6 x 10 puzzle has been solved computationally and it is known that there are 2,339 ways to fit 12 pentominoes into a 6 x 10 grid. 
-
-One of our first jobs is to rewrite this code to solve sonnet-shaped puzzles. In the case of sonnets, we have 14 x 10 grids (14 lines, 10 syllables per line). English majors may note that 6 x 10 is the shape of a sestet, the last six lines of a sonnet. Traditionally, the sestet provides an answer to the question posed in the first eight lines of the poem called the "octave." It may then be ideal (and cleverly meaningful) to pack the octave and sestet of our sonnets separately. Brad thinks below out loud about what this packing will entail. For one thing, most pieces will have to appear more than once (at least once in the sestet, then most or all will appear again in the octave, a few two or three times more). It would be most elegant to pack the octave with as many different shapes as will fit.
-
+We hope to rewrite this code to solve sonnet-shaped puzzles. In the case of sonnets, we have 14 x 10 grids (14 lines, 10 syllables per line). English majors may note that 6 x 10 is the shape of a sestet, the last six lines of a sonnet. Traditionally, the sestet provides an answer to the question posed in the first eight lines of the poem called the "octave." It may then be ideal (and cleverly meaningful) to pack the octave and sestet of our sonnets separately. Brad thinks below out loud about what this packing will entail. For one thing, most pieces will have to appear more than once (at least once in the sestet, then most or all will appear again in the octave, a few two or three times more). It would be most elegant to pack the octave with as many different shapes as will fit (each of the pentominos and each of the tetrominos); piecifying the puzzle this way also makes the solving of the sonnet more challenging as a pieces from the sestet may be incongrously inserted into the octave and vice versa.
     
 ### Create New Puzzles
 To create a new puzzle...
@@ -97,7 +107,7 @@ Each of the 17 sonnets has a different set of constraints on pentomino placement
 
 An extra headache: 7 sonnets (sonnets 3, 8, 9, 10, 11, 15, 17) have lines in them that have more than ten syllables. We'll need to adjust these lines by hand (eliding syllables or crowding them) before pursuing scripted solutions.
 
-### Resources
+### More Resources
 Discussion of pentomino puzzle solving at
 http://www.mattbusche.org/blog/article/polycube/
 
