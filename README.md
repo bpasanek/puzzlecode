@@ -15,7 +15,7 @@ An example of a puzzle created by hand (Sonnet 1):
 
 ![Sonnet 1, cut up by hand](/images/sonnet1.jpg)
 
-Finally, an example of a sonnet sestet (the last 6 lines of a sonnet) "piecifed", that is, matched against a solution to the polyomino problem that packs 12 pentominos into a 6x10 grid. A puzzle solver has to configure the pieces of poetry into pentameter lines, the first of which will read "Then of thy beauty do I question make": 
+Finally, an example of a sonnet sestet (the last 6 lines of a sonnet) "piecifed", that is, matched against a solution to the polyomino problem that packs 12 pentominos into a 6x10 grid. A human puzzle solver who is handed these pieces of poetry has to configure them into pentameter lines, the first of which will read "Then of thy beauty do I question make": 
 
 ![Sonnet 12, sestet, laser cut](/images/sonnet12-sestet-wb.jpg)
 
