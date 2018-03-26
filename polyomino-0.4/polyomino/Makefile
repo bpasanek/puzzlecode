@@ -1,6 +1,6 @@
 BINARIES=pentomino one_sided_pentomino one_sided_hexomino pent_hexomino tetr_pentomino heptomino rook cross log-tee parallelogram punctured_rectangle identical_hexomino identical_heptomino
 INCLUDES=polyomino.h poly-list.h
-CC=cc -Wall -O4 -funroll-loops -lm
+CC=gcc -Wall -O4 -funroll-loops -lm
 
 all:	${BINARIES}
 

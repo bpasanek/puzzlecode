@@ -1,5 +1,5 @@
 BINARIES=problem65 polyomino-find hexomino-new
-CC=cc -Wall -O4 -funroll-loops
+CC=gcc -Wall -O4 -funroll-loops
 
 all:	${BINARIES}
 
@@ -8,7 +8,7 @@ hexomino-new:	hexomino-new.c
 	strip hexomino-new
 
 problem65:	problem65.c
-	${CC} problem65.c -o problem65 -march=pentiumpro
+	${CC} problem65.c -o problem65 
 	strip problem65
 
 polyomino-find:	polyomino-find.c

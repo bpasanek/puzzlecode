@@ -26,9 +26,9 @@ char *description =
 
 int width, height;
 
-#define max_width 20
+#define max_width 10
 #define max_height 8
-#define min_height 4
+#define min_height 8
 
 #define LEN(poly_no) len[poly_no]
 
@@ -39,7 +39,8 @@ int width, height;
 #define search_method 1
 #define check_size_of_blank_regions 0
 
-#define CHECK_PROGRESS
+//#define CHECK_PROGRESS
+#undef CHECK_PROGRESS
 
 #include "polyomino.h"
 

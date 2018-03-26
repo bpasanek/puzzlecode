@@ -113,23 +113,23 @@ void get_user_input(int argc, char **argv) {
   get_arg(rand_seed);
 #endif
 
-  if (print_choice != 1 && print_choice != 3)
-    fprintf(stderr,description);
+//  if (print_choice != 1 && print_choice != 3)
+//    fprintf(stderr,description);
 
 #ifndef width
   for (i=min_height;i*i<area_rectangle;i++)
     if (area_rectangle/i*i == area_rectangle) n++;
   while(choice<1 || choice>n) {
-    fprintf(stderr,"Choose size of rectangle:\n");
+//    fprintf(stderr,"Choose size of rectangle:\n");
     m = 0;
     for (i=min_height;i*i<area_rectangle;i++) if (area_rectangle/i*i == area_rectangle) {
       m++;
-      fprintf(stderr,  "%d) %d by %d rectangle.\n",m,area_rectangle/i,i);
+//      fprintf(stderr,  "%d) %d by %d rectangle.\n",m,area_rectangle/i,i);
     }
-    fprintf(stderr,"Input choice (number between 1 and %d): ",n);
+//    fprintf(stderr,"Input choice (number between 1 and %d): ",n);
     fgets(input,100,stdin);
     choice = atoi(input);
-    fprintf(stderr,"\n");
+//    fprintf(stderr,"\n");
   }
   for (i=min_height,m=0;m<choice;i++) if (area_rectangle/i*i == area_rectangle) m++;
   i--;
@@ -138,15 +138,16 @@ void get_user_input(int argc, char **argv) {
 #endif
 
   while(print_choice<1 || print_choice>4) {
-    fprintf(stderr,"Select your printing choice:\n"
+/*    fprintf(stderr,"Select your printing choice:\n"
            "  1) Just count solutions;\n"
            "  2) Pretty print the solutions;\n"
            "  3) Ugly print the solutions;\n"
            "  4) Pretty print every 1000th solutions.\n"
            "Input choice (number between 1 and 4): ");
+*/
     fgets(input,100,stdin);
     print_choice = atoi(input);
-    fprintf(stderr,"\n");
+//    fprintf(stderr,"\n");
   }
 
 #ifndef search_method
@@ -168,15 +169,16 @@ void get_user_input(int argc, char **argv) {
 "up-down and diagonal).\n");
 
   while(search_method<1 || search_method>4) {
-    fprintf(stderr,"Select your search_method:\n"
+/*    fprintf(stderr,"Select your search_method:\n"
            "  1) Work from left to right;\n"
            "  2) Use worst score method;\n"
            "  3) Use small space method;\n"
            "  4) Use short worst score method.\n"
            "Input choice (number between 1 and 4): ");
+*/
     fgets(input,100,stdin);
     search_method = atoi(input);
-    fprintf(stderr,"\n");
+//   fprintf(stderr,"\n");
   }
 #endif
 
@@ -218,7 +220,7 @@ void ugly_print_array() {
   for(y=0;y<height;y++) {
     for(x=0;x<width;x++)
        printf("%c",ARRAY(x,y)==-2 ? ' ' : ARRAY(x,y)==-1 ? '.' : colors[(int)ARRAY(x,y)]);
-   printf("\n");
+   printf(" ");
   }
   printf("\n");
 }
@@ -569,7 +571,7 @@ void print_solution() {
       rotate_pretty_print_array();
     fflush(stdout);
   } else if (print_choice == 3) {
-    printf("Number %.15g\n",nr_found);
+//    printf("Number %.15g\n",nr_found);
 #ifdef IDENTICAL
     if (check_symmetry(2))
       printf("180 degree rotational symmetry.\n");
