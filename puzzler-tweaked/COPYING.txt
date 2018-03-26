@@ -1,0 +1,36 @@
+.. -*- coding: utf-8 -*-
+
+================================
+ Copying Polyform Puzzler (GPL)
+================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Web site: http://puzzler.sourceforge.net/
+
+**Polyform Puzzler** is a software toolkit for exploring & solving
+polyform puzzles.
+
+Copyright |c| 1998-2015  David J. Goodger <goodger@python.org>
+
+Portions copyright |c| 2010  Ali Assaf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the `GNU General Public License version 2
+<GPL2.txt>`_ as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the `GNU
+General Public License version 2`_ for more details.
+
+You should have received a copy of the `GNU General Public License
+version 2`_ along with this program; if not, refer to
+http://puzzler.sourceforge.net/GPL2.txt or write to:
+
+    | Free Software Foundation, Inc.
+    | 59 Temple Place, Suite 330
+    | Boston, MA  USA
+    | 02111-1307
+
+.. |c| unicode:: U+00A9 .. copyright sign

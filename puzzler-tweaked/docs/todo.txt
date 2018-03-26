@@ -1,0 +1,74 @@
+.. -*- coding: utf-8 -*-
+
+===================================
+ Polyform Puzzler |---| To Do List
+===================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: |c| 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+
+.. sidebar:: Also see:
+
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+   * `Puzzles & Solutions <puzzles.html>`_
+
+
+General
+=======
+
+* Rewrite exact_cover_dlx.py in C as an extension module.
+
+* Complete unit tests.
+
+* Implement a graphical front-end.  Ideas:
+
+  - The ability to turn pieces on or off, and control the number of
+    instances of each piece.
+
+* Restore state from a solution file instead of from a saved state
+  file?  I.e. use the last solution in the solution file to simulate a
+  saved state file.
+
+* Add multiprocessing support.
+
+
+Puzzles
+=======
+
+See the "Potential Puzzles" sections of the Notes for each polyform
+family:
+
+- `Notes on Polyominoes <polyomino-notes.html#potential-puzzles>`__
+
+- `Notes on Polyiamonds <polyiamond-notes.html#potential-puzzles>`__
+
+- `Notes on Polyhexes <polyhex-notes.html#potential-puzzles#potential-puzzles>`__
+
+- `Notes on Polycubes <polycube-notes.html#potential-puzzles>`__
+
+- `Notes on Polysticks <polystick-notes.html#potential-puzzles>`__
+
+- `Notes on Polytrigs <polytrig-notes.html#potential-puzzles>`__
+
+- `Notes on Polytwigs <polytwig-notes.html#potential-puzzles>`__
+
+
+.. |---| unicode:: U+2014  .. em dash —
+   :trim:
+.. |c| unicode:: U+00A9 .. copyright sign ©
+.. |x| unicode:: U+00D7 .. multiplication sign ×
+   :trim:
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 70
+   End:

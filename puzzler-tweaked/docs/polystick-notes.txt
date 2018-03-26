@@ -1,0 +1,327 @@
+.. -*- coding: utf-8 -*-
+
+=====================
+ Notes on Polysticks
+=====================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: © 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Polystick Puzzles & Solutions <polysticks.html>`_
+   * `An Introduction to Polysticks <polysticks-intro.html>`_
+   * `Polyform Puzzler: Puzzles & Solutions <puzzles.html>`_
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+     (`polyform details <FAQ.html#what-polyforms-are-there>`__,
+     `numbers of polyforms <FAQ.html#how-many-of-each-type-of-polyform-are-there>`__,
+     `interpreting solution files <FAQ.html#how-should-polystick-solution-files-be-interpreted>`__)
+
+.. contents::
+
+
+Polyform Counts
+===============
+
+Units are unit line segments on the square grid.
+
+The polysticks (fully-connected):
+
+=====  ==========  ======  ======  ======  =========  ======  ======
+Order  Name        Free    Units   Sum     One-sided  Units   Sum
+=====  ==========  ======  ======  ======  =========  ======  ======
+1      monostick       1       1       1        1         1       1
+2      distick         2       4       5        2         4       5
+3      tristick        5      15      20        7        21      26
+4      tetrastick     16      64      84       25       100     126
+5      pentastick     55     275     359       99       495     621
+6*     hexastick     222                      416
+7*     heptastick    950                     1854
+=====  ==========  ======  ======  ======  =========  ======  ======
+
+"*" above means that pieces with enclosed holes exist.
+
+The quasi-polysticks (includes disconnected forms that have gaps of
+maximum length 1):
+
+=====  ================  ======  ======  ======  =========  ======  ======
+Order  Name              Free    Units   Sum     One-sided  Units   Sum
+=====  ================  ======  ======  ======  =========  ======  ======
+1      quasi-monostick       1       1       1       1          1       1
+2      quasi-distick         6      12      13       8         16      17
+3      quasi-tristick       46     138     151      80        240     257
+4      quasi-tetrastick    603                    1151
+5      quasi-pentastick   8878                   17573
+=====  ================  ======  ======  ======  =========  ======  ======
+
+
+Shapes
+======
+
+Holes (denoted by a "*" in the function name) consist of internal
+segments only, no circumference segments.
+
+Grid size definitions are OK (instead of side length), as long as it's
+clearly noted.
+
+Rectangular MxN grid (bordered)::
+
+    R(m,n) = m * (n - 1) + n * (m - 1)
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+R    m=2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=2    4    7   10   13   16   19   22   25   28   31   34   37   40   43   46
+  3  ...   12   17   22   27   32   37   42   47   52   57   62   67   72   77
+  4  ...  ...   24   31   38   45   52   59   66   73   80   87   94  101  108
+  5  ...  ...  ...   40   49   58   67   76   85   94  103  112  121  130  139
+  6  ...  ...  ...  ...   60   71   82   93  104  115  126  137  148  159  170
+  7  ...  ...  ...  ...  ...   84   97  110  123  136  149  162  175  188  201
+  8  ...  ...  ...  ...  ...  ...  112  127  142  157  172  187  202  217  232
+  9  ...  ...  ...  ...  ...  ...  ...  144  161  178  195  212  229  246  263
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  180  199  218  237  256  275  294
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  220  241  262  283  304  325
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  264  287  310  333  356
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  312  337  362  387
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  364  391  418
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  420  449
+ 16  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  480
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Rectangular MxN grid (unbordered)::
+
+    R*(m,n) = (m - 2) * (n - 1) + (m - 1) * (n - 2)
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+R*   m=2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=2    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14
+  3  ...    4    7   10   13   16   19   22   25   28   31   34   37   40   43
+  4  ...  ...   12   17   22   27   32   37   42   47   52   57   62   67   72
+  5  ...  ...  ...   24   31   38   45   52   59   66   73   80   87   94  101
+  6  ...  ...  ...  ...   40   49   58   67   76   85   94  103  112  121  130
+  7  ...  ...  ...  ...  ...   60   71   82   93  104  115  126  137  148  159
+  8  ...  ...  ...  ...  ...  ...   84   97  110  123  136  149  162  175  188
+  9  ...  ...  ...  ...  ...  ...  ...  112  127  142  157  172  187  202  217
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  144  161  178  195  212  229  246
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  180  199  218  237  256  275
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  220  241  262  283  304
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  264  287  310  333
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  312  337  362
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  364  391
+ 16  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  420
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+MxN diamond lattice::
+
+    D(m,n) = m * n * 4
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+D    m=1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=1    4    8   12   16   20   24   28   32   36   40   44   48   52   56   60
+  2  ...   16   24   32   40   48   56   64   72   80   88   96  104  112  120
+  3  ...  ...   36   48   60   72   84   96  108  120  132  144  156  168  180
+  4  ...  ...  ...   64   80   96  112  128  144  160  176  192  208  224  240
+  5  ...  ...  ...  ...  100  120  140  160  180  200  220  240  260  280  300
+  6  ...  ...  ...  ...  ...  144  168  192  216  240  264  288  312  336  360
+  7  ...  ...  ...  ...  ...  ...  196  224  252  280  308  336  364  392  420
+  8  ...  ...  ...  ...  ...  ...  ...  256  288  320  352  384  416  448  480
+  9  ...  ...  ...  ...  ...  ...  ...  ...  324  360  396  432  468  504  540
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  ...  400  440  480  520  560  600
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  484  528  572  616  660
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  576  624  672  720
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  676  728  780
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  784  840
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  900
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Triangles (n == height)::
+
+    T(n) = n(n + 3)
+
+Double Triangles (n == height)::
+
+    DT(n) = 2n² +3n - 1
+
+Aztec Diamonds (n == side length or height of quadrant; _A134582)::
+
+    A(n) = 4(n + 1)² - 4
+         = 4n(n + 2)
+
+.. _A134582: http://oeis.org/A134582
+
+==  ===  ===  ====
+n   T    DT   A   
+==  ===  ===  ====
+ 1    4    4    12
+ 2   10   13    32
+ 3   18   26    60
+ 4   28   43    96
+ 5   40   64   140
+ 6   54   89   192
+ 7   70  118   252
+ 8   88  151   320
+ 9  108  188   396
+10  130  229   480
+11  154  274   572
+12  180  323   672
+13  208  376   780
+14  238  433   896
+15  270  494  1020
+==  ===  ===  ====
+
+Trapezoid (m = base / jagged hypotenuse, n=smooth side length)::
+
+    Tr(m,n) = T(m) - T(m - n) + 2(m - n)
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+Tr   m=2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=2   10   16   22   28   34   40   46   52   58   64   70   76   82   88   94
+  3  ...   18   26   34   42   50   58   66   74   82   90   98  106  114  122
+  4  ...  ...   28   38   48   58   68   78   88   98  108  118  128  138  148
+  5  ...  ...  ...   40   52   64   76   88  100  112  124  136  148  160  172
+  6  ...  ...  ...  ...   54   68   82   96  110  124  138  152  166  180  194
+  7  ...  ...  ...  ...  ...   70   86  102  118  134  150  166  182  198  214
+  8  ...  ...  ...  ...  ...  ...   88  106  124  142  160  178  196  214  232
+  9  ...  ...  ...  ...  ...  ...  ...  108  128  148  168  188  208  228  248
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  130  152  174  196  218  240  262
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  154  178  202  226  250  274
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  180  206  232  258  284
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  208  236  264  292
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  238  268  298
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  270  302
+ 16  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  304
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Parallelogram (m=smooth base length, n=jagged side length)::
+
+    P(m,n) = R(m,n) + 2(n - 1)
+
+Parity imbalance = (n - 1).
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+P    m=2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=2   13   18   23   28   33   38   43   48   53   58   63   68   73   78   83
+  3   19   26   33   40   47   54   61   68   75   82   89   96  103  110  117
+  4   25   34   43   52   61   70   79   88   97  106  115  124  133  142  151
+  5   31   42   53   64   75   86   97  108  119  130  141  152  163  174  185
+  6   37   50   63   76   89  102  115  128  141  154  167  180  193  206  219
+  7   43   58   73   88  103  118  133  148  163  178  193  208  223  238  253
+  8   49   66   83  100  117  134  151  168  185  202  219  236  253  270  287
+  9   55   74   93  112  131  150  169  188  207  226  245  264  283  302  321
+ 10   61   82  103  124  145  166  187  208  229  250  271  292  313  334  355
+ 11   67   90  113  136  159  182  205  228  251  274  297  320  343  366  389
+ 12   73   98  123  148  173  198  223  248  273  298  323  348  373  398  423
+ 13   79  106  133  160  187  214  241  268  295  322  349  376  403  430  457
+ 14   85  114  143  172  201  230  259  288  317  346  375  404  433  462  491
+ 15   91  122  153  184  215  246  277  308  339  370  401  432  463  494  525
+ 16   97  130  163  196  229  262  295  328  361  394  427  460  493  526  559
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+
+Potential Puzzles
+=================
+
+*Puzzles not otherwise noted below have not been implemented or solved.*
+
+*Initial numbers are the counts of unit line segments in the puzzles.*
+
+15: tristicks
+
+20: polysticks of order 1 to 3
+
+21: one-sided tristicks
+
+26: one-sided polysticks of order 1 to 3
+
+* DT(3)
+* T(4) - 2 segments (= trapezoid)
+
+40: one-sided welded tetrasticks
+
+* No solutions:
+
+  * R*(6,6)
+  * D(5,2)
+
+49: seven-segment digits
+
+* No solutions:
+
+  * R*(7,6)
+
+60: 15/16 tetrasticks
+
+* No solutions:
+
+  * D(5,3) (= Tetrasticks3x5DiamondLattice)
+  * R*(7,7)
+
+64: tetrasticks (must have parity imbalance = 2, 6, 10, or 14)
+
+* Potential:
+
+* No solutions:
+
+  * D(4,4) diamond lattice -- impossible due to parity (imbalance = 0)
+  * P(5,5) -- impossible due to parity (imbalance = 4;
+    = TetrasticksParallelogram5x5)
+  * DT(5)
+
+84: polysticks of order 1 to 4
+
+* Potential:
+
+  * T(8) - 4 segments
+  * T(9) - R*(5,5)
+  * R*(8,8) (probably no solutions; = Polysticks1234_8x8Unbordered)
+
+* No solutions:
+
+  * D(5,5) - D(2,2) (5x5 diamond lattice ring;
+    = Polysticks1234_5x5DiamondLatticeRing)
+
+100: one-sided tetrasticks
+
+* P(5,8) (impossible due to odd parity imbalance?)
+
+126: one-sided polysticks of order 1 to 4
+
+* R(12,6)
+* R*(13,7)
+* R(9,8) - 1 segment
+* T(10) - 4 segments
+
+
+Misc
+====
+
+* Tetrasticks horizontal/vertical parity imbalance
+  (abs(vertical - horizontal))::
+
+      I L Y V T X U N J H F Z R W P O
+      4 2 2 0 0 0 0 2 2 2 0 0 0 0 0 0
+
+  Total minimum imbalance = 2, therefore for symmetrical puzzles one
+  of HJLNY must be omitted.
+
+  For one-sided tetrasticks, only even imbalances are possible.
+
+
+Links
+=====
+
+* The `"Nexos" board game`__, designed by the designer of the "Blokus"
+  games, uses the 24 polysticks of order 1-4.
+
+  __ http://boardgamegeek.com/boardgame/84453/nexos

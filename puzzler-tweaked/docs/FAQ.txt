@@ -1,0 +1,1406 @@
+.. -*- coding: utf-8 -*-
+
+
+.. NOTE TO MAINTAINERS: Please add new questions to the end of their
+   sections, so section/question numbers remain stable.
+
+
+===============================================
+ Polyform Puzzler — Frequently Asked Questions
+===============================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2016-11-29 23:36:17 -0600 (Tue, 29 Nov 2016) $
+:Revision: $Revision: 636 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: |c| 1998-2016 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Puzzles & Solutions <puzzles.html>`_
+   * `How to Extend Polyform Puzzler <extend.html>`_
+   * `To Do List <todo.html>`_
+   * `Polyform Puzzler History <history.html>`_
+
+.. sectnum::
+.. contents::
+
+
+The Project
+===========
+
+What is "Polyform Puzzler"?
+---------------------------
+
+Polyform Puzzler is a set of solvers for many polyform puzzles (like
+Pentominoes and Soma Cubes), and a software toolkit for exploring &
+solving polyform puzzles.  It consists of a set of front-end
+applications for specific polyform puzzles and a Python library that
+does the heavy lifting.  New polyforms and new puzzles can easily be
+defined and added to the core.
+
+
+How did Polyform Puzzler begin?
+-------------------------------
+
+I first discovered Pentominoes in Arthur C. Clarke's novel `Imperial
+Earth`, probably around the time I was 11 or 12 years old.  I picked
+up a pentominoes puzzle ("Hexed", by Gabriel Toys) at a local hobby
+store and spent many hours discovering solutions.
+
+In university, probably while avoiding legitimate study, I wrote the
+first implementation of a Pentominoes-solving project, in Object
+Pascal.  I developed an algorithm that solved the puzzle using brute
+force with some intelligence applied:
+
+* Place each pentomino in every possible location.
+* Confirm that the remaining empty spaces all have areas that are a
+  multiple of 5 squares.
+* For areas of exactly 5 squares, determine the piece that fits and
+  confirm its availability.
+* Check for bottlenecks that force a subset of the remaining space to
+  accept only a single specific piece, and confirm its availability.
+
+When I first learned Python_, I reimplemented this as a practical
+learning exercise.  I improved the algorithm a bit and got it to work
+pretty well, if not completely bug-free.  It was a fun and interesting
+exercise, but the code was complicated and ran slow.  (It didn't help
+that I only had a 66MHz computer at the time.)
+
+I even went so far as to register the "puzzler" project on
+SourceForge, but didn't take it any further at that time.  I had
+scratched my itch enough, and another itch became more persistent...
+
+While writing the second implementation and learning Python I
+discovered Python docstrings and started looking around for
+auto-documentation systems to exploit them.  I couldn't find anything
+that worked well for me, so I started scratching *that* itch, and
+eventually reStructuredText_ & Docutils_ were born.  You could say
+that Polyform Puzzler spawned Docutils_.
+
+In the summer of 2006 I discovered a new approach for solving polyform
+puzzles, Donald Knuth's "Dancing Links Algorithm X" ("DLX") approach
+to the "exact cover" problem, `described below`__.  This approach was
+so different from what I'd done previously, and so obviously superior,
+that my old itch resurfaced.  Polyform Puzzler is the result.
+
+__ `How are the polyform puzzles solved?`_
+.. _Python: http://www.python.org
+.. _Docutils: http://docutils.sf.net
+.. _reStructuredText: http://docutils.sf.net/rst.html
+
+
+Can others contribute?
+----------------------
+
+Most definitely, yes!  See the next question for how.
+
+
+How can others contribute?
+--------------------------
+
+**Python programmers**
+    Please jump right in, there's a lot `to do`_!  Patches are
+    welcome, as are new project members (see the next question).
+
+**Programmers who don't know Python**
+    Have you considered learning Python_?  It's a great language,
+    focused on programmer productivity.  Python excels at the rapid
+    creation of maintainable code.  It's scalable.  And it's fun.
+    `Give it a try!`__
+
+    __ http://wiki.python.org/moin/BeginnersGuide/Programmers
+
+    There is one area where Python doesn't shine: raw speed.  But that
+    can be solved with extension modules written in C.  The workhorse
+    of the Polyform Puzzler project, the ExactCover class (implemented
+    in the puzzler.exact_cover_dlx_ and puzzler.exact_cover_x2_
+    modules), should be rewritten as an extension module in C for
+    speed.  See section 4, `The Code`_, for an introduction.
+
+**Non-programmers**
+    Have you considered learning to program?  It's not as difficult as
+    you think, and it can be loads of fun!  Here are some `guides for
+    beginners to get you started`__.
+
+    __ http://wiki.python.org/moin/BeginnersGuide/NonProgrammers
+
+**Puzzlers**
+    Use the project, and report on any issues you find.  Run a puzzle
+    marked "solutions incomplete" and send me the output.  Let me know
+    if you use and enjoy Polyform Puzzler!
+
+**Anyone**
+    Do you enjoy Polyform Puzzler and want to say thanks?  Is there a
+    puzzle or a feature you'd like to see implemented?  (Yes, I *can*
+    be bribed!)  Well, I love real-world, physical polyform puzzles
+    too, and I'd love to receive some!  Here's my _`wish list`:
+
+    * Kadon's `Octiamond Ring
+      <http://www.gamepuzzles.com/esspoly.htm#OR>`__
+
+    * Kadon's `Hexnut <http://www.gamepuzzles.com/esspoly2.htm#HN>`__,
+      and `Hexnut II <http://www.gamepuzzles.com/esspoly2.htm#HN2>`__
+
+    Plus, I have a `wish list on Amazon.ca`__ with a bunch of
+    unrelated DVDs and books.  My address is available `on my
+    résumé`__.
+
+__ http://www.amazon.ca/gp/registry/registry.html/?ie=UTF8&type=wishlist&id=200YG9OZEZWBW
+__ http://python.net/~goodger/professional/cv/
+.. _to do: todo.html
+
+
+Can others join the project?
+----------------------------
+
+Most certainly, yes!  All you need is a SourceForge_ account, and
+they're free.  Just click the "Create Account" link on the `project
+page`__ or any SourceForge_ page.
+
+__ https://sourceforge.net/projects/puzzler
+.. _SourceForge: https://sourceforge.net
+
+
+Polyforms
+=========
+
+What are "Polyforms"?
+---------------------
+
+The word "polyform" can be defined from its parts:
+
+    poly-
+        more than one; many
+    form
+        shape
+
+According to the `Wikipedia definition`_,
+
+    a polyform is a plane figure constructed by joining together
+    identical basic polygons
+
+`Wolfram MathWorld's definition`_:
+
+    A plane figure or solid consisting of multiple connected copies of
+    a given base shape.
+
+`Regular polygons`_ which `tile the plane`_ (fill, without gaps or
+overlap; a tessellation_) are the most satisfying basic polygons for
+polyform puzzles, and there are three: the equilateral triangle, the
+square, and the hexagon.  Other polygons can be used though.  With a
+given polygon, the set of polyforms of order *N* is defined by
+constructing all possible combinations of *N* copies of that polygon,
+joined edge to edge, without overlapping.  Duplicates (from rotation
+or reflection) are typically ignored (the "free polyforms"), although
+some puzzles explicitly treat reflections separately ("one-sided
+polyforms").
+
+For example, 5 squares can be combined in 12 different ways, resulting
+in the "pentominoes_":
+
+.. figure:: images/ominoes/pentominoes.png
+
+   The 12 pentominoes, with their common names.
+
+Many sets of polyforms can combine to fill certain areas or volumes.
+These can be called "polyform puzzles" or "combinatoric dissection
+puzzles".  For example, the pentominoes can fill a 6x10 rectangle:
+
+.. figure:: images/ominoes/pentominoes6x10.png
+
+   One 6 |x| 10 pentominoes solution.
+
+There are 2339 distinct ways to fit the pentominoes into a 6x10
+rectangle.  Polyform Puzzler `can find them all`_.
+
+The definition of polyforms above can be generalized to include:
+
+* Solids (polyhedra) joined face to face.  `Regular (Platonic)
+  solids`_ that `fill space`_ are the most satisfying, but there is
+  only one Platonic solid that fills space: the cube.  Tetrahedra and
+  octahedra together can fill space though.  In addition, the
+  `truncated octahedron`_ (a `semi-regular, Archimedian solid`_) and
+  the `rhombic dodecahedron`_ can each individually fill space, as can
+  other, less regular polyhedra.
+
+* Line segments of a grid (polysticks, polytrigs, & polytwigs).
+
+* Two-dimensional squares in a three-dimensional grid: polyominoids.
+
+The sky's the limit!
+
+.. _Wikipedia definition: http://en.wikipedia.org/wiki/Polyform
+.. _Wolfram MathWorld's definition: http://mathworld.wolfram.com/Polyform.html
+.. _regular polygons: http://mathworld.wolfram.com/RegularPolygon.html
+.. _tile the plane: http://mathworld.wolfram.com/Tiling.html
+.. _tessellation: http://mathworld.wolfram.com/Tessellation.html
+.. _pentominoes: pentominoes.html
+.. _can find them all: ../solutions/ominoes/pentominoes-6x10.txt
+.. _regular (Platonic) solids: http://mathworld.wolfram.com/PlatonicSolid.html
+.. _fill space: http://mathworld.wolfram.com/Space-FillingPolyhedron.html
+.. _truncated octahedron: http://mathworld.wolfram.com/TruncatedOctahedron.html
+.. _semi-regular, Archimedian solid:
+   http://mathworld.wolfram.com/ArchimedeanSolid.html
+.. _rhombic dodecahedron: http://mathworld.wolfram.com/RhombicDodecahedron.html
+
+
+What polyforms are there?
+-------------------------
+
+There are many possible families of polyforms, with new ones being
+invented all the time.  Polyform Puzzler only deals with a limited
+number of polyforms; in my opinion the most aesthetically pleasing
+ones.  Polyform families are given descriptive names:
+
+* Square-based polyforms are named "polyominoes_" (from a "domino",
+  which is two squares joined): monomino, domino, tromino, tetromino,
+  pentomino, hexomino, etc.
+
+  The tetrominoes are famous for their role in the videogame "Tetris".
+  The 12 pentominoes are probably the most well-known polyform, due to
+  their versatility and the large variety of non-trivial puzzles they
+  form.
+
+  .. figure:: images/ominoes/pentominoes-3x20.png
+
+     3 |x| 20 Pentominoes (2 solutions; can you see the other one?)
+
+  .. figure:: images/ominoes/one-sided-pentominoes-3x30.png
+
+     3 |x| 30 One-Sided Pentominoes (46 solutions)
+
+  **In Polyform Puzzler:**
+
+  * `Pentomino Puzzles & Solutions <pentominoes.html>`_
+  * `Polyomino Puzzles & Solutions <polyominoes.html>`_
+  * `An Introduction to Polyominoes <polyominoes-intro.html>`_
+  * `Notes on Polyominoes <polyomino-notes.html>`_
+
+* Substituting a 3D cube for each 2D square in polyominoes results in
+  "solid polyominoes" or "planar polycubes".
+
+  .. figure:: images/cubes/solid-pentominoes-3x4x5.png
+
+     3 |x| 4 |x| 5 Solid Pentominoes (3940 solutions)
+
+  **In Polyform Puzzler:**
+
+  * `Solid Pentomino Puzzles & Solutions <solid-pentominoes.html>`_
+  * `An Introduction to Polyominoes`_
+  * `An Introduction to Polycubes <polycubes-intro.html>`_
+  * `Notes on Polyominoes`_
+  * `Notes on Polycubes <polycube-notes.html>`_
+
+* Polyforms based on cubes extending into 3 (or more!) dimensions are
+  called "polycubes_".  The polycubes that are flat (only one cube
+  thick) are known as "planar polycubes" or "solid polyominoes".
+
+  .. figure:: images/cubes/tetracubes-2x2x8.png
+
+     2 |x| 2 |x| 8 tetracubes (224 solutions)
+
+  `Soma Cubes`_ are a well-known group of 7 polycubes (6 tetracubes
+  and 1 tricube): all the non-convex (non-box-like) 3-dimensional
+  polycubes up to order 4 (because with 5 cubes, we'd need 4
+  dimensions!).
+
+  .. figure:: images/cubes/soma-3x3x3.png
+
+     3 |x| 3 |x| 3 Soma Cubes (240 solutions)
+
+  ..  _Soma cubes: http://en.wikipedia.org/wiki/Soma_cube
+
+  **In Polyform Puzzler:**
+
+  * `Pentacube Puzzles & Solutions <pentacubes.html>`_
+  * `Polycube Puzzles & Solutions <polycubes.html>`_
+  * `An Introduction to Polycubes`_
+  * `Notes on Polycubes`_
+
+* Polyforms based on equilateral triangles are named "polyiamonds_"
+  (from the "diamond", which is two triangles joined).
+
+  .. figure:: images/iamonds/hexiamonds-4x10-long-hex.png
+
+     4 |x| 10 Hexiamond Elongated Hexagon (856 solutions)
+
+  **In Polyform Puzzler:**
+
+  * `Hexiamond Puzzles & Solutions <hexiamonds.html>`_
+  * `Heptiamond Puzzles & Solutions <hexiamonds.html>`_
+  * `Polyiamond Puzzles & Solutions <polyiamonds.html>`_
+  * `An Introduction to Polyiamonds <polyiamonds-intro.html>`_
+  * `Notes on Polyiamonds <polyiamond-notes.html>`_
+
+* Polyforms based on regular hexagons are named "polyhexes_" (there's
+  no clever etymology here).
+
+  .. figure:: images/hexes/tetrahexes-coin.png
+
+     5 |x| 7 Tetrahex "Coin" (4 solutions)
+
+  **In Polyform Puzzler:**
+
+  * `Pentahex Puzzles & Solutions <pentahexes.html>`_
+  * `Polyhex Puzzles & Solutions <polyhexes.html>`_
+  * `An Introduction to Polyhexes <polyhexes-intro.html>`_
+  * `Notes on Polyhexes <polyhex-notes.html>`_
+
+* Polyforms based on unit line segments joined end-to-end on a square
+  grid are called "polysticks" [#polysticks]_ (a.k.a. "polyedges" or
+  "polypleura_").  The shapes formed from matchsticks joined together
+  end-to-end at 90° angles are polysticks.  Polysticks are related to
+  polyominoes: polysticks can be thought of as paths joining the
+  centers of the squares of polyominoes.
+
+  .. figure:: images/sticks/polysticks-1234-3x7-diamond-lattice.png
+
+     Polysticks of Order 1-4 in a 3 |x| 7 Diamond Lattice
+
+  **In Polyform Puzzler:**
+
+  * `Polystick Puzzles & Solutions <polysticks.html>`_
+  * `An Introduction to Polysticks <polysticks-intro.html>`_
+  * `Notes on Polysticks <polystick-notes.html>`_
+
+* Polyforms based on unit line segments joined end-to-end on a
+  triangular grid are called "polytrigs" (a.k.a. "triangular-grid
+  polysticks" etc., but that's too long a name, so excuse the
+  neologism).  Polytrigs are related to polyhexes: polytrigs can be
+  thought of as paths joining the centers of the hexagon units of
+  polyhexes.
+
+  .. figure:: images/trigs/polytrigs-123-4x3.png
+
+     Polytrigs of Order 1-3 in a 4 |x| 3 Parallelogram
+
+  **In Polyform Puzzler:**
+
+  * `Polytrig Puzzles & Solutions <polytrigs.html>`_
+  * `An Introduction to Polytrigs <polytrigs-intro.html>`_
+  * `Notes on Polytrigs <polytrig-notes.html>`_
+
+* Polyforms based on unit line segments joined end-to-end on a
+  hexagonal grid are called "polytwigs" (a.k.a. "hexagonal-grid
+  polysticks" etc., but again, that's too long a name, so excuse the
+  neologism).  Polytwigs are related to polyiamonds: polytwigs can be
+  thought of as paths joining the centers of the triangle units of
+  polyiamonds.
+
+  .. figure:: images/twigs/polytwigs-12345-inset-rectangle-5x5.png
+
+     Polytwigs of Order 1-5 in a 5 |x| 5 Inset Rectangle
+
+  **In Polyform Puzzler:**
+
+  * `Polytwig Puzzles & Solutions <polytwigs.html>`_
+  * `An Introduction to Polytwigs <polytwigs-intro.html>`_
+  * `Notes on Polytwigs <polytwig-notes.html>`_
+
+.. [#polysticks] Brian R. Barwell, "Polysticks," `Journal of
+   Recreational Mathematics` volume 22 issue 3 (1990), p.165-175
+.. _polyominoes:
+   http://www.recmath.com/PolyPages/PolyPages/index.htm?Polyominoes.html
+.. _polyiamonds:
+   http://www.recmath.com/PolyPages/PolyPages/index.htm?Polyiamonds.htm
+.. _polyhexes:
+   http://www.recmath.com/PolyPages/PolyPages/index.htm?Polyhexes.html
+.. _polycubes:
+   http://www.recmath.com/PolyPages/PolyPages/index.htm?Polycubes.html
+.. _polypleura:
+   http://www.saintanns.k12.ny.us/depart/math/Lawrence/polyfrm.html
+
+
+How many of each type of polyform are there?
+--------------------------------------------
+
+Hyperlinks in parentheses are to the relevant entries in `The On-Line
+Encyclopedia of Integer Sequences <http://oeis.org/>`_.
+
+* Polyominoes (A000105_, A000988_):
+
+  =======  ==========  ===========  =========
+  Squares  Name        Polyominoes  One-Sided
+  =======  ==========  ===========  =========
+  1        monomino    1            1
+  2        domino      1            1
+  3        tromino     2            2
+  4        tetromino   5            7
+  5        pentomino   12           18
+  6        hexomino    35           60
+  7*       heptomino   108          196
+  8*       octomino    369          704
+  9*       enneomino   1285         2500
+  10*      decomino    4655         9189
+  =======  ==========  ===========  =========
+
+  This table also applies to solid polyominoes (planar polycubes).
+
+  "*" above means that pieces with enclosed holes exist.
+
+  **In Polyform Puzzler:**
+
+  * `Pentomino Puzzles & Solutions`_
+  * `Polyomino Puzzles & Solutions`_
+  * `Solid Pentomino Puzzles & Solutions`_
+  * `An Introduction to Polyominoes`_
+  * `Notes on Polyominoes`_
+
+  .. _A000105: http://oeis.org/A000105
+  .. _A000988: http://oeis.org/A000988
+
+* Polyiamonds (A000577_, A006534_):
+
+  =========  ============  ===========  =========
+  Triangles  Name          Polyiamonds  One-Sided
+  =========  ============  ===========  =========
+  1          moniamond     1            1
+  2          diamond       1            1
+  3          triamond      1            1
+  4          tetriamond    3            4
+  5          pentiamond    4            6
+  6          hexiamond     12           19
+  7          heptiamond    24           43
+  8          octiamond     66           120
+  9*         enneiamond    160          307
+  10*        deciamond     448          866
+  11*        hendeciamond  1186         2336
+  =========  ============  ===========  =========
+
+  **In Polyform Puzzler:**
+
+  * `Hexiamond Puzzles & Solutions`_
+  * `Heptiamond Puzzles & Solutions`_
+  * `Polyiamond Puzzles & Solutions`_
+  * `An Introduction to Polyiamonds`_
+  * `Notes on Polyiamonds`_
+
+  .. _A000577: http://oeis.org/A000577
+  .. _A006534: http://oeis.org/A006534
+
+* Polyhexes (A000228_, A006535_):
+
+  ========  ==========  =========  =========
+  Hexagons  Name        Polyhexes  One-Sided
+  ========  ==========  =========  =========
+  1         monohex     1          1
+  2         dihex       1          1
+  3         trihex      3          3
+  4         tetrahex    7          10
+  5         pentahex    22         33
+  6*        hexahex     82         147
+  7*        heptahex    333        620
+  8*        octahex     1448       2821
+  ========  ==========  =========  =========
+
+  "*" above means that pieces with enclosed holes exist.
+
+  One hexahex contains a central hole (1 hexagon).  It is used for one
+  of the "o" letters in this project's logo.
+
+  **In Polyform Puzzler:**
+
+  * `Pentahex Puzzles & Solutions`_
+  * `Polyhex Puzzles & Solutions`_
+  * `An Introduction to Polyhexes`_
+  * `Notes on Polyhexes`_
+
+  .. _A000228: http://oeis.org/A000228
+  .. _A006535: http://oeis.org/A006535
+
+* Polycubes (A000162_):
+
+  =====  ==========  =========
+  Cubes  Name        Polycubes
+  =====  ==========  =========
+  1      monocube    1
+  2      dicube      1
+  3      tricube     2
+  4      tetracube   8
+  5      pentacube   29
+  6      hexacube    166
+  7      heptacube   1023
+  8      octacube    6922
+  =====  ==========  =========
+
+  Since polycubes are 3-D shapes, "flipping" makes no sense (we'd have
+  to use the 4th dimension), so there are no "one-sided" counts.
+  There are, however, "chiral" pairs: pairs of corresponding
+  mirror-image shapes (often called right-handed and left-handed).
+
+  **In Polyform Puzzler:**
+
+  * `Pentacube Puzzles & Solutions`_
+  * `Polycube Puzzles & Solutions`_
+  * `An Introduction to Polycubes`_
+  * `Notes on Polycubes`_
+
+  .. _A000162: http://oeis.org/A000162
+
+* Polysticks (a.k.a. "polyedges"; A019988_, A151537_):
+
+  ======  ==========  ==========  =========
+  Sticks  Name        Polysticks  One-Sided
+  ======  ==========  ==========  =========
+  1       monostick   1           1
+  2       distick     2           2
+  3       tristick    5           7
+  4       tetrastick  16          25
+  5       pentastick  55          99
+  6*      hexastick   222         416
+  7*      heptastick  950         1854
+  ======  ==========  ==========  =========
+
+  "*" above means that pieces with enclosed holes exist.
+
+  **In Polyform Puzzler:**
+
+  * `Polystick Puzzles & Solutions`_
+  * `An Introduction to Polysticks`_
+  * `Notes on Polysticks`_
+
+  .. _A019988: http://oeis.org/A019988
+  .. _A151537: http://oeis.org/A151537
+
+* Polytrigs (a.k.a. "triangular-grid polysticks"; A159867_, A151539_):
+
+  =====  =========  =========  =========
+  Lines  Name       Polytrigs  One-Sided
+  =====  =========  =========  =========
+  1      monotrig   1          1
+  2      ditrig     3          3
+  3      tritrig    12         19
+  4*     tetratrig  60         104
+  5*     pentatrig  375        719
+  6*     hexatrig   2613       5123
+  =====  =========  =========  =========
+
+  "*" above means that pieces with enclosed holes exist.
+
+  **In Polyform Puzzler:**
+
+  * `Polytrig Puzzles & Solutions`_
+  * `An Introduction to Polytrigs`_
+  * `Notes on Polytrigs`_
+
+  .. _A159867: http://oeis.org/A159867
+  .. _A151539: http://oeis.org/A151539
+
+
+* Polytwigs (a.k.a. "hexagonal-grid polysticks"; A197459_, A197460_):
+
+  =====  =========  =========  =========
+  Lines  Name       Polytwigs  One-Sided
+  =====  =========  =========  =========
+  1      monotwig   1          1
+  2      ditwig     1          1
+  3      tritwig    3          4
+  4      tetratwig  4          6
+  5      pentatwig  12         19
+  6      hexatwig   27         49
+  7      heptatwig  78         143
+  =====  =========  =========  =========
+
+  **In Polyform Puzzler:**
+
+  * `Polytwig Puzzles & Solutions`_
+  * `An Introduction to Polytwigs`_
+  * `Notes on Polytwigs`_
+
+  .. _A197459: http://oeis.org/A197459
+  .. _A197460: http://oeis.org/A197460
+
+
+Where can I find more information about polyforms?
+--------------------------------------------------
+
+There are many web sites with polyform information.  If you're looking
+for specific information, a search engine is your best bet.  Here are
+a few good places to start:
+
+* `Wikipedia <http://en.wikipedia.org/wiki/Polyform>`__
+* `MathWorld <http://mathworld.wolfram.com/Polyform.html>`__
+* `The Poly Pages <http://www.recmath.com/PolyPages/>`__
+* `Vicher's Puzzle Pages <http://www.vicher.cz/puzzle/>`__
+* `MathPuzzle.com <http://www.mathpuzzle.com/polyom.htm>`__
+* `The Geometry Junkyard
+  <http://www.ics.uci.edu/~eppstein/junkyard/polyomino.html>`__
+* `mirror of Livio Zucca's pages (Remembrance of Software Past)
+  <http://www.iread.it/lz/>`__
+* `More about polyforms <http://www.gamepuzzles.com/morepoly.htm>`__
+  (`Kadon Enterprises`_)
+* `More about Polyominoes and Polycubes
+  <http://www.gamepuzzles.com/polyintr.htm>`__ (`Kadon Enterprises`_)
+* `Game and Puzzle Sites <http://www.gamepuzzles.com/resourc5.htm>`__
+  (`Kadon Enterprises`_)
+
+
+Where can I find physical polyform puzzles?
+-------------------------------------------
+
+For a wide variety via internet/mail order, I **highly recommend**
+`Kadon Enterprises`_ (see my `wish list`_).  `PuzzleMaster.ca`_ also
+has a small selection of polyforms, plus a huge selection of other
+types of puzzles (like the Hanayama "cast puzzle" series, very cool).
+
+I also recommend doing research on the web, then checking out your
+local toy, game, and puzzle specialty stores.  If they don't stock
+what you want, ask them to get it for you!  Here are some sources that
+I know of:
+
+* "Blokus_" board games:
+
+  - The 21 polyominoes of order 1-5 are used as the playing pieces in
+    the original "Blokus_" board game.
+
+  - The 22 polyiamonds of order 1-6 are used as the playing pieces in
+    the "Blokus Trigon" board game.
+
+  - The 11 polycubes of order 2-4 are used as the playing pieces in
+    the "Blokus 3D" board game.
+
+* Solid pentominoes are commonly available in the "Pocket Play" series
+  by `Shoptaugh Games`_ (distributed in Canada and elsewhere by
+  `Family Games`_).
+
+* Soma Cubes are sold under the name "Block By Block" by ThinkFun_.
+
+* The 24 polysticks of order 1-4 are used as the playing pieces in
+  `the "Nexos" board game`__, designed by the designer of the "Blokus"
+  games.
+
+  __ http://boardgamegeek.com/boardgame/84453/nexos
+
+* In Japan, many polyform puzzles are available from Tenyo_.
+
+* If you're a puzzle afficionado and happen to find yourself in Tokyo,
+  Japan, `Puzzle Shop Torito`_ near Akihabara station is a must-visit.
+  Plan on spending a few hours there (and bring plenty of cash!).
+  They also do internet/mail order, and list their wares on `Amazon
+  Japan`_ (where I discovered them).
+
+.. _PuzzleMaster.ca: http://puzzlemaster.ca
+.. _Blokus: http://en.wikipedia.org/wiki/Blokus
+.. _Shoptaugh Games: http://www.shoptaugh.com/
+.. _Family Games: http://www.familygamesamerica.com
+.. _ThinkFun: http://www.thinkfun.com
+.. _Tenyo: http://www.tenyo.co.jp/pp/
+.. _Kadon Enterprises: http://www.gamepuzzles.com/
+.. _Puzzle Shop Torito: http://www.torito.jp/
+.. _Amazon Japan: http://amazon.co.jp/gp/aag/main?seller=A3HSPHRGB3HM3O
+
+
+Why do you like polyforms so much?
+----------------------------------
+
+I love challenges.  I love solving puzzles.  Be it a Rubik's Cube or a
+logic puzzle or a wire puzzle, I find puzzles hard to resist.
+
+I also love geometrical forms: polygons (especially regular polygons
+and polygons that tile the plane), polyhedra (especially Platonic and
+Archimedean solids, space-filling solids, and stellations),
+geometrical sculpture, and more.
+
+Polyforms combine the challenge of puzzles with the beauty of
+geometrical forms.  Polyforms are constructed by joining together
+identical basic geometrical units.  That the complete sets of various
+polyforms make beautiful, challenging puzzles is a delight to me.
+
+The fact that all 12 possible forms constructed from 5 squares joined
+at their edges (the pentominoes) can fill a 6×10 rectangle, is simply
+a wonder of nature.  That there are 2,339 unique solutions is a
+delight.  The 12 solid pentomines (pentominoes 1 unit thick) can form
+a 3×4×5 solid (consecutive numbers!  Pythagorean triangle lengths!) in
+3,940 unique ways — but it's a real challenge to find just one.
+
+I love polyforms because of their beauty.  It's the beauty of the
+inner workings of mathematics and geometry, the beauty of the natural
+world.  I get the same delight from polyforms as I get from fractals
+and snowflakes.  The beauty of polyforms is similar to the beauty of
+crystals, flowers, and galaxies.
+
+.. figure:: images/iamonds/heptiamonds-snowflake-2.png
+
+   Heptiamonds snowflake — a beautiful, delightful challenge
+
+
+Polyform Puzzles & Solutions
+============================
+
+What polyform puzzles are supported?
+------------------------------------
+
+Many polyomino, polyiamond, polyhex, polycube, polystick, polytrig,
+and polytwig puzzles are supported.  For a full list, see the `Puzzles
+& Solutions`_ document.  My bias is for regular unit shapes and
+symmetrical puzzles.  More polyform puzzles are to come:
+
+* other polyominoes (`notes
+  <polyomino-notes.html#potential-puzzles>`__)
+
+* other polycubes (`notes <polycube-notes.html#potential-puzzles>`__)
+
+* other polyiamonds (`notes
+  <polyiamond-notes.html#potential-puzzles>`__)
+
+* other polyhexes (`notes
+  <polyhex-notes.html#potential-puzzles#potential-puzzles>`__)
+
+* other polysticks (`notes
+  <polystick-notes.html#potential-puzzles>`__)
+
+* other polytrigs (`notes <polytrig-notes.html#potential-puzzles>`__)
+
+* other polytwigs (`notes <polytwig-notes.html#potential-puzzles>`__)
+
+* and puzzles of new polyforms!
+
+
+Why aren't all solutions provided for all puzzles?
+--------------------------------------------------
+
+Short answer: limited time, space, and interest.
+
+**Time:** It can take a long time to find all the solutions to a
+puzzle.  Many puzzles have a *lot* of solutions: thousands, millions,
+billions...  Sometimes I allow puzzles to run to completion even
+though it takes days or weeks, but usually I don't allow that much
+time.
+
+**Space:** The Polyform Puzzler project has limited space for its
+files.  Large numbers of solutions take up a lot of disk space.  I
+will often truncate solution files to save space on the host servers.
+
+**Interest:** For most puzzles I don't care what the actual number of
+solutions is.  I am content just to know that there are *many*
+solutions.  I only find and publish a small sample.
+
+If a puzzle has a finite and reasonable number of solutions, say 10000
+or fewer, I may find and publish all the solutions (often truncated).
+If a puzzle has a known number of solutions, I will often find all of
+them to verify the software and confirm the published number.
+
+If you would like to have all the solutions for a particular puzzle, I
+encourage you to use the Polyform Puzzler software on your own
+computer.  Some puzzles are already optimized to find unique solutions
+only, but many are not.  See `Preventing Duplicates
+<extend.html#preventing-duplicates>`_ in `How to Extend Polyform
+Puzzler`_.
+
+
+How do you choose puzzle shapes? (What criteria do you use for selecting puzzles to implement?)
+-----------------------------------------------------------------------------------------------
+
+My puzzle selection criteria are entirely subjective: I choose to
+implement the puzzles that I find particularly beautiful or
+interesting.  Beauty, of course, is in the eye of the beholder.  I
+especially like highly symmetrical puzzles.
+
+I welcome suggestions for new puzzles, but I cannot guarantee that I
+will implement any or all of them.
+
+
+How should the solution files be interpreted?
+---------------------------------------------
+
+The `solution files <http://puzzler.sourceforge.net/solutions>`__ are
+text files that all follow a common pattern.  The first line states
+the puzzle matrix class (from a module in the puzzler.puzzles package)
+being solved::
+
+    Solving Pentominoes6x10Matrix:
+
+Some puzzles are split up into several matrices.  After all the
+solutions for one matrix are exhausted, the name of the next matrix
+will be given.
+
+Each solution record contains three parts.  First, the solution header
+with the solution number::
+
+    solution 1:
+
+The second part of the solution record lists the solution coordinates,
+one piece per line, with the piece name last::
+
+    1,1 2,0 2,1 2,2 3,1 X
+    0,0 0,1 0,2 0,3 1,0 L
+    3,0 4,0 4,1 4,2 5,1 F
+    5,0 6,0 6,1 6,2 7,0 T
+    1,2 1,3 2,3 3,2 3,3 U
+    0,4 0,5 1,4 1,5 2,4 P
+    2,5 3,5 4,5 5,5 6,5 I
+    5,2 5,3 6,3 7,3 7,4 Z
+    3,4 4,3 4,4 5,4 6,4 Y
+    7,5 8,5 9,3 9,4 9,5 V
+    7,1 7,2 8,0 8,1 9,0 W
+    8,2 8,3 8,4 9,1 9,2 N
+
+The interpretation of coordinates varies by polyform family.  See the
+section below for the specific polyform family you're interested in.
+
+In some puzzles, like the 6x6 tetrasticks, one or more pieces are
+either omitted from each solution (old style) or placed adjacent to
+the solution (new style).  In old-style solutions such omitted pieces
+are listed with "!"  in place of the coordinates list::
+
+    ! H
+
+If there are omitted pieces, a notice is prefixed to the visual
+representation::
+
+    (H omitted)
+
+The third part of the solution record is a visual representation of
+the solution::
+
+    P P I I I I I V V V
+    P P P Y Y Y Y Z N V
+    L U U U Y Z Z Z N V
+    L U X U F Z T W N N
+    L X X X F F T W W N
+    L L X F F T T T W W
+
+Finally, the number of solutions, the number of searches (software
+operations executed), and the duration (time taken to complete the
+execution) are listed::
+
+    2339 solutions, 906813 searches, duration 0:19:10.133000
+
+
+How should polyomino solution files be interpreted?
+---------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polyominoes use a 2-dimensional X,Y `cartesian coordinate system
+<https://en.wikipedia.org/wiki/Cartesian_coordinate_system>`_.
+
+The visual representation consists of piece names (letters) in a 2-D
+grid.  Imagine each letter as a square, with adjacent like-labelled
+squares joined.  Example (with the x- and y-coordinates also shown)::
+
+      5   N Z I I I I I U U U
+      4   N Z Z Z P P P U W U
+      3   N N T Z X P P W W L
+      2   V N T X X X W W F L
+      1   V T T T X Y F F F L
+    y=0   V V V Y Y Y Y F L L
+
+        x=0 1 2 3 4 5 6 7 8 9
+
+In the solution above, the V piece is at (x,y) coordinates (0,0),
+(0,1), (0,2), (1,0), and (2,0).  Its corresponding coordinate line
+is::
+
+    0,0 0,1 0,2 1,0 2,0 V
+
+**In Polyform Puzzler:**
+
+* `Pentomino Puzzles & Solutions`_
+* `Polyomino Puzzles & Solutions`_
+* `An Introduction to Polyominoes`_
+* `Notes on Polyominoes`_
+
+
+How should polycube solution files be interpreted?
+--------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polycubes (solid pentominoes, Soma cubes) use a 3-dimensional X,Y,Z
+cartesian coordinate system.
+
+The visual representation consists of piece names (letters) in
+multiple layers, each a 2-D slice of a 3-D space.  (See "`How should
+polyomino solution files be interpreted?`_" above to interpret the X &
+Y coordinates of each slice.)  Imagine the layers stacked up from left
+to right, with each letter as a cube, with adjacent like-labelled
+cubes joined (z-coordinates of layers shown)::
+
+    U V V V N    U W T T T    U W Z L Y
+    U W Z V N    X W Z T Y    U F Z L Y
+    X W Z V N    X P P T N    X F F L Y
+    I I I I I    X P P P N    F F L L Y
+
+    z=0          z=1          z=2
+
+In the solution above, the U piece is at (x,y,z) coordinates (0,2,0),
+(0,3,0), (0,3,1), (0,2,2), and (0,3,2).  Its corresponding coordinate
+line is::
+
+    0,2,0 0,2,2 0,3,0 0,3,1 0,3,2 U
+
+Some polycube puzzles, like the solid pentomino ring puzzles, are
+equivalent to a 2-dimensional puzzle folded into 3 dimensions.  These
+puzzles' visual representations consist of the view from each side of
+the solution, with corners duplicated between adjacent sides::
+
+    U U V    V Z Y Y Y Y W T F    F L L    U X P P P L L L L
+    X U V    V Z Z Z Y W W T F    F F F    X X X P P N N N F
+    U U V    V V V Z W W T T T    T F N    U X I I I I I N N
+
+In the solution to the 3x3x9 solid pentomino ring puzzle above, the
+left wall is shown first, then the front wall, then the right wall,
+then the back wall.  The back wall is shown with the same orientation
+as the front wall.
+
+**In Polyform Puzzler:**
+
+* `Solid Pentomino Puzzles & Solutions`_
+* `Pentacube Puzzles & Solutions`_
+* `Polycube Puzzles & Solutions`_
+* `An Introduction to Polycubes`_
+* `An Introduction to Polyominoes`_
+* `Notes on Polycubes`_
+* `Notes on Polyominoes`_
+
+
+How should polyhex solution files be interpreted?
+-------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polyhexes use a 2-dimensional skewed (X,Y) cartesian coordinate
+system.  The X and Y axes are 60° apart instead of 90°.
+
+The visual representation is an ASCII-art drawing of the solution,
+with the Y-axis vertical and the X-axis sloping up.  Example (with
+coordinates)::
+
+                            __   3
+                         __/  \
+                      __/  \  /  2
+                   __/   __/  \
+                __/     /   __/  1
+             __/  \__   \  /  \
+          __/   __   \__/  \  /  y=0
+         /  \  /  \__/  \__/  \
+      3  \  /  \__    __/   __/
+         /  \__/  \  /   __/
+      2  \  /     /  \__/    6
+         /  \     \__/    5
+      1  \  /   __/    4
+         /  \__/    3
+    y=0  \__/    2
+              1
+         x=0
+
+**In Polyform Puzzler:**
+
+* `Pentahex Puzzles & Solutions`_
+* `Polyhex Puzzles & Solutions`_
+* `An Introduction to Polyhexes`_
+* `Notes on Polyhexes`_
+
+
+How should polyiamond solution files be interpreted?
+----------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polyiamonds use a pseudo-3-dimensional skewed (X,Y,Z) cartesian
+coordinate system.  The X and Y axes are 60° apart instead of 90°, and
+the Z dimension is used to represent the orientation of triangles::
+
+               ____
+        /\     \  /
+    z=0/__\  z=1\/
+
+The visual representation is an ASCII-art drawing of the solution,
+with the X-axis horizontal and the Y-axis sloping to the right.
+Example (with coordinates)::
+
+                  x=0  1   2   3   4   5   6   7   8
+                 ____________________________________
+                /   /           /    \      /       /
+            3  /   /___________/   ___\    /       /
+              /       /    \      /   /    \  /\  /
+          2  /_______/      \____/   /______\/  \/
+            /       /\      /   /\       \      /
+        1  /   ____/  \____/   /  \_______\    /
+          /   /        \       \          /   /
+    y=0  /___/__________\_______\________/___/
+
+         x=0  1   2   3   4   5   6   7   8
+
+**In Polyform Puzzler:**
+
+* `Hexiamond Puzzles & Solutions`_
+* `Heptiamond Puzzles & Solutions`_
+* `Polyiamond Puzzles & Solutions`_
+* `An Introduction to Polyiamonds`_
+* `Notes on Polyiamonds`_
+
+
+How should polystick solution files be interpreted?
+---------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polysticks use a pseudo-3-dimensional (X,Y,Z) cartesian coordinate
+system, but the line segments of the grid are significant, not the
+squares.  The Z dimension is used to represent the direction of line
+segments: 0=horizontal, 1=vertical.  Horizontal line segments "x,y,0"
+start at (x,y) and end at (x+1,y), one unit to the right.  Vertical
+line segments "x,y,1" start at (x,y) and end at (x,y+1), one unit up.
+(The Z dimension corresponds to the index of the dimension that
+increases.)  In earlier versions of Polyform Puzzler, internal
+intersections (where grid lines cross) were also shown (in the form
+"x,yi") but these can be ignored.
+
+The visual representation consists of piece names (letters) in an
+ASCII-art drawing of the 2-D grid.  Imagine that all adjacent line
+segments with the same labels are joined.  Example (with
+coordinates)::
+
+      4 ->   -R-- -T-- -T-- -r--
+            y    R    T    r    Y
+            |    |    |    |    |
+      3 ->   -y-- -R-- -r-- -Y--     ---- z=0
+            y    R    T    r    Y
+            |    |    |    |    |       |
+      2 ->   -H-- -H-- -h-- -h--        | z=1
+            y    H    X    h    Y
+            |    |    |    |    |
+      1 ->   -H-- -X-- -X-- -h--
+            F    F    X    f    f
+            |    |    |    |    |
+    y=0 ->   -F-- -F-- -f-- -f--
+
+            ^    ^    ^    ^    ^
+          x=0    1    2    3    4
+
+The solution above is from the 5x5 welded one-sided tetrasticks
+puzzle.  Lowercase piece names indicate flipped pieces in one-sided
+puzzles (asterisk ["*"] suffixes were used to show flipped pieces in
+earlier versions of Polyform Puzzler).
+
+**In Polyform Puzzler:**
+
+* `Polystick Puzzles & Solutions`_
+* `An Introduction to Polysticks`_
+* `Notes on Polysticks`_
+
+
+How should polytrig solution files be interpreted?
+---------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polytrig solutions are similar to polystick solutions, except on a
+triangular grid like polyiamonds.  The Z dimension is used to
+represent the direction of line segments: 0 = 0° horizontal; 1 = 60°
+counter-clockwise, up and to the right; 2 = 120° counter-clockwise, up
+and to the left.
+
+The visual representation consists of piece names (letters & numbers)
+in an ASCII-art drawing of the triangular 2-D grid.  Example (with
+coordinates)::
+
+                      x=0     1     2     3     4
+
+                  4   __U3__
+                     /U3   /U3
+                   T3  \ Y3  \                    z=2  z=1
+               3   /_Y3_\/_L3_\                     \  /
+                  /T3   /Y3   /L3                    \/___ z=0
+                T3  \ I3  \ P3  \                   (x,y)
+            2   /_Z3_\/    \/_J3_\
+               /Z3   /      P3   /L3
+             C3  \ I3        \ J3  \
+         1   /_Z3_\/_S3____P3_\/_O3_\
+             C3   /E3   /S3   /O3   /
+              \ I3  \ E3  \ J3  \ O3
+    y=0        \/_C3_\/_E3_\/_S3_\/
+
+      x=0     1     2     3     4
+
+**In Polyform Puzzler:**
+
+* `Polytrig Puzzles & Solutions`_
+* `An Introduction to Polytrigs`_
+* `Notes on Polytrigs`_
+
+
+How should polytwig solution files be interpreted?
+---------------------------------------------------
+
+See "`How should the solution files be interpreted?`_" above for an
+overview of solution files.
+
+Polytwig solutions are similar to polystick solutions, except on a
+hexagonal grid like polyhexes.  The Z dimension is used to represent
+the direction of line segments: 0 = 0° horizontal to the right; 1 =
+120° counter-clockwise, up and to the left; 2 = 240°
+counter-clockwise, down and to the left.
+
+The visual representation consists of piece names (letters & numbers)
+in an ASCII-art drawing of the hexagonal 2-D grid.  Example (with
+coordinates)::
+
+             z=1                               \__  y=5
+               \                               /
+           (x,y)\____z=0                 \__
+                /                        /
+               /                   \__         \__  4
+             z=2                   /           /
+                             \__         \__
+                             /           /
+                       \__         \__         \__  3
+                       /           /           /
+                  _P5_       \__         \__
+             5   P5   P5     /           /
+                /      \_U5_       \__         \__  2
+                P5     U5   U5     /           /
+                 \_U5_/      \_U5_       \__
+             4   P5   X5     X5   L5     /
+                /      \_X5_/      \_L5_       \__  1
+                I5     X5   X5     L5   R5     /
+                 \_T5_/      \_L5_/      \_R5_
+             3   I5   T5     L5   W5     R5   R5
+                /      \_T5_/      \_Y5_/      \    y=0
+                I5     T5   T5     W5   Y5     R5
+                 \_H5_/      \_S5_/      \_Y5_/
+             2   I5   H5     S5   W5     Y5
+                /      \_H5_/      \_Y5_/       5
+                I5     H5   S5     W5
+                 \_C5_/      \_W5_/       4
+             1   C5   H5     S5
+                /      \_S5_/       3
+                C5     C5
+                 \_C5_/       2
+           y=0
+                        1
+
+               x=0
+
+**In Polyform Puzzler:**
+
+* `Polytwig Puzzles & Solutions`_
+* `An Introduction to Polytwigs`_
+* `Notes on Polytwigs`_
+
+
+The Code
+========
+
+How are the polyform puzzles solved?
+------------------------------------
+
+Polyform Puzzler works by reducing puzzles into "`exact cover`_"
+problems.  Briefly, to solve an exact cover problem, given a matrix of
+0s and 1s, we must find a set of rows which, when combined, contain
+exactly one 1 in each column.  To find every solution we must find all
+such sets of rows.
+
+We construct a two-dimensional matrix with named columns.  The first
+row consists of the column names: first the puzzle piece names, then
+the coordinates of the solution space as text strings.  For example,
+in a puzzle with three pieces to be placed in a 3x3 grid, we'd have 12
+columns::
+
+    A  B  C    0,0  1,0  2,0    0,1  1,1  2,1    0,2  1,2  2,2
+
+We determine every possible position of each puzzle piece in the
+puzzle, and construct one row for each position.  Starting with a row
+of 0s, put a 1 in the column for the puzzle piece name and in each
+column corresponding to the position of the puzzle piece.  For
+example, puzzle piece A covering coordinates (0,0), (0,1), and (1,1)
+would create this row in the matrix::
+
+    1  0  0    1  0  0    1  1  0    0  0  0
+
+.. note:: Polyform Puzzler doesn't actually use 1s in its internal
+   matrices, it uses the column titles (the piece names and coordinate
+   strings) instead.  For example, the row above is actually
+   represented in the internal matrix as follows::
+
+       ['A', 0, 0, '0,0', 0, 0, '0,1', '1,1', 0, 0, 0, 0]
+
+   This redundancy makes debugging easier, makes individual rows
+   intelligible without having to refer to the header row, and is a
+   shortcut when reporting solutions.
+
+   Polyform Puzzler is written using the Python programming language,
+   and in Python any non-zero number or non-empty text string (even a
+   text string like '0,0' or even '0') is the equivalent of a "True"
+   boolean value, equivalent to the number 1.  This representation
+   doesn't affect the operation of the exact cover algorithm.
+
+Once all the rows have been constructed (there may be many), the
+solutions can be found by identifying sets of rows that, combined,
+have exactly one 1 (or equivalent) in each column.  For example, this
+is one such solution::
+
+    1  0  0    1  0  0    1  1  0    0  0  0
+    0  1  0    0  1  1    0  0  1    0  0  0
+    0  0  1    0  0  0    0  0  0    1  1  1
+
+The puzzler.exact_cover_dlx_ module implements Donald E. Knuth's
+`Dancing Links`_ approach to his `Algorithm X`_ ("DLX").  For a
+complete description of DLX, see Knuth's paper (`compressed PostScript
+original`__ or `PDF version`__).
+
+The puzzler.exact_cover_x2_ module implements Knuth's `Algorithm X`_
+using a high-level native data structure technique devised by `Ali
+Assaf`_.  This implementation runs about 3 times faster than DLX in
+native Python.
+
+__ http://www-cs-faculty.stanford.edu/~knuth/papers/dancing-color.ps.gz
+__ http://arxiv.org/pdf/cs/0011047
+.. _exact cover: http://en.wikipedia.org/wiki/Exact_cover
+.. _puzzler.exact_cover_dlx: ../puzzler/exact_cover_dlx.py
+.. _puzzler.exact_cover_x2: ../puzzler/exact_cover_x2.py
+.. _Dancing Links: http://en.wikipedia.org/wiki/Dancing_Links
+.. _Algorithm X: http://en.wikipedia.org/wiki/Algorithm_X
+.. _Ali Assaf: http://www.cs.mcgill.ca/~aassaf9/python/algorithm_x.html
+
+
+How are Sudoku puzzles solved?
+------------------------------
+
+Sudoku can be reduced to the same kind of `exact cover`_ problem as
+polyform puzzles, and the same algorithm can be used to solve
+both types of puzzles.  It's just a matter of identifying the constraints.
+
+Here's a 4x4 Sudoku puzzle we'll use to illustrate::
+
+    1 . | . 4
+    . 4 | . 2
+    ----+----
+    2 3 | . 1
+    . . | 2 .
+
+Each row, column, and block must contain the digits (1, 2, 3, 4)
+exactly once.  We have four sets of constraints:
+
+1. There are 4 blocks, numbered 0, 1, 2, & 3.  Each block must contain
+   the digits (1, 2, 3, 4) exactly once.  We can name each exact cover
+   matrix column with the combination of digit value and block number::
+
+       1b0 2b0 3b0 4b0 1b1 2b1 3b1 4b1 1b2 2b2 3b2 4b2 1b3 2b3 3b3 4b3
+
+   Each name is of the form: digit + "b" + block number.  There are
+   sixteen combinations, 4 * 4, or 4-squared.  In a 9x9 Sudoku puzzle,
+   there will be 81 combinations.
+
+2. There are 4 columns, again numbered 0, 1, 2, & 3.  Each column must
+   contain each digit exactly once.  Again, we combine the digit
+   values and column numbers to name exact cover matrix columns::
+
+       1c0 2c0 3c0 4c0 1c1 2c1 3c1 4c1 1c2 2c2 3c2 4c2 1c3 2c3 3c3 4c3
+
+   Each name is of the form: digit + "c" + column number.  There are
+   16 combinations, (4 * 4, or 4-squared).  In a 9x9 Sudoku puzzle,
+   there will be 81 combinations.
+
+3. Similarly for the 4 rows::
+
+       1r0 2r0 3r0 4r0 1r1 2r1 3r1 4r1 1r2 2r2 3r2 4r2 1r3 2r3 3r3 4r3
+
+4. We must also make sure that no digit is placed in the same location
+   more than once.  So we have constraints on all coordinate pairs,
+   all combinations of rows & columns::
+
+       0,0 1,0 2,0 3,0 0,1 1,1 2,1 3,1 0,2 1,2 2,2 3,2 0,3 1,3 2,3 3,3
+
+Altogether there are 4 sets of constraints, each with 16 (4 * 4)
+elements, for a total of 64 columns in the exact cover matrix.  For a
+9x9 puzzle, we will have 4 times (9 squared) = 324 columns.
+
+A Sudoku puzzle has a starting position, a set of given digits in a
+sparse grid.  The program creates one exact cover matrix row for each
+of these digits.  Each row will have exactly four "1" values, one each
+for the block, the column, and the row (each paired with the digit
+value), and one for the column & row coordinate pair.  The program
+will then generate one candidate row for each digit in each empty
+square in the starting position.
+
+The resulting matrix is then fed into algorithm X, which
+produces the result: a set of rows that satisfies all constraints.  If
+the puzzle is ambiguous (and therefore not well-formed), more than one
+result may be produced.  If an entirely empty starting position is
+used, the algorithm will eventually produce every possible Sudoku
+solution (all 6,670,903,752,021,072,936,960 of them), if you give it
+enough time.
+
+
+.. |c| unicode:: U+00A9 .. copyright sign
+.. |x| unicode:: U+00D7 .. multiplication sign
+   :trim:
+
+
+Usage
+=====
+
+How can I install and use Polyform Puzzler?
+-------------------------------------------
+
+See `the README file`_ for full instructions.
+
+.. _the README file: ../README.html
+
+
+How can I add my own puzzle?
+----------------------------
+
+That's a big question. The beginning of an answer is in `How to Extend
+Polyform Puzzler`_. If you have questions that aren't answered there,
+please ask on the puzzler-users@lists.sourceforge.net mailing list
+(`subscribe here`_).
+
+.. _subscribe here:
+   https://lists.sourceforge.net/mailman/listinfo/puzzler-users
+
+
+How were the graphics created?
+------------------------------
+
+The solution images were all generated by Polyform Puzzler itself, via
+the ``-s``/``--svg`` option, and the SVG vector image files were
+converted to PNG raster images using Inkscape_ from the command line
+(batch mode).  For example::
+
+    inkscape -D -e docs/images/ominoes/pentominoes-6x10.png -d 180 \
+        docs/images/ominoes/pentominoes-6x10.svg
+
+This exports just the drawing (not the page, no margin; -D option) to
+a PNG file (-e option) at 180 DPI (-d option), based on the SVG file.
+We use 180 DPI output for polyominoes, polyiamonds, polyhexes, and
+polytwigs (90 DPI for thumbnails, except for polytwigs which use 120
+DPI); 240 DPI for polysticks (120 DPI for thumbnails); and 300 DPI for
+polytrigs (180 DPI for thumbnails).
+
+SVG image files can be created from existing solution files using the
+``-r``/``--read-solution`` option or by solving the puzzle anew.
+Using ``-r``, you can also choose which solution to render graphically
+with the ``-n``/``--stop-after`` option.
+
+The X3D models were created via the ``-x``/``--x3d`` option and can be
+viewed with Xj3D_ (multiplatform), FreeWrl_ (Mac & GNU/Linux), `Flux
+Player`_ (Windows), and other 3-D viewing software.
+
+.. _Inkscape: http://www.inkscape.org/
+.. _Xj3D: http://www.xj3d.org/
+.. _FreeWRL: http://freewrl.sourceforge.net/
+.. _Flux Player: http://www.mediamachines.com/
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 70
+   End:

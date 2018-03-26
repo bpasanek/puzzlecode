@@ -1,0 +1,266 @@
+.. -*- coding: utf-8 -*-
+
+=======================================
+ Polyform Puzzler: Puzzles & Solutions
+=======================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: |c| 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+   * `How to Extend Polyform Puzzler <extend.html>`_
+   * `Polyform Puzzler History <history.html>`_
+   * `To Do List <todo.html>`_
+
+Polyform Puzzler solves a variety of polyomino, polyiamond, polyhex,
+polycube, polystick, polytrig, and polytwig puzzles.  Files containing
+solutions of most puzzles are available at
+http://puzzler.sourceforge.net/solutions; direct links to individual
+solution files are provided.  The solution images below were generated
+by Polyform Puzzler itself, via the ``-s``/``--svg`` option, and SVG
+converted to PNG with Inkscape_.  The X3D models (created via the
+``-x``/``--x3d`` option) can be viewed with Xj3D_ (multiplatform),
+FreeWrl_ (Mac & GNU/Linux), `Flux Player`_ (Windows), and other 3-D
+viewing software.
+
+.. _Inkscape: http://www.inkscape.org/
+.. _Xj3D: http://www.xj3d.org/
+.. _FreeWRL: http://freewrl.sourceforge.net/
+.. _Flux Player: http://www.mediamachines.com/
+.. _Polyform Puzzler FAQ: FAQ.html
+
+
+* Polyominoes_ (pentominoes_, hexominoes_, & variations)
+
+  .. list-table::
+     :class: borderless
+
+     * - `Pentominoes <pentominoes.html>`_
+
+         .. image:: images/ominoes/pentominoes-6x10-small.png
+            :target: pentominoes.html
+            :class: borderless
+
+       - `One-Sided Pentominoes <pentominoes.html#one-sided-pentominoes>`_
+
+         .. image:: images/ominoes/one-sided-pentominoes-6x15-small.png
+            :target: pentominoes.html#one-sided-pentominoes
+            :class: borderless
+
+       - `Polyominoes <polyominoes.html>`_
+
+         .. image:: images/ominoes/one-sided-polyominoes-1234-octagon-small.png
+            :target: polyominoes.html
+            :class: borderless
+
+  .. list-table::
+     :class: borderless
+
+     * - `Hexominoes <hexominoes.html>`_
+
+         .. image:: images/ominoes/hexominoes-parallelogram-35x6-small.png
+            :target: hexominoes.html
+            :class: borderless
+
+
+  Also see:
+
+  * `An Introduction to Polyominoes <polyominoes-intro.html>`_
+  * `Notes on Polyominoes <polyomino-notes.html>`_
+
+* Polyiamonds_ (`hexiamonds`_ & `heptiamonds`_)
+
+  .. list-table::
+     :class: borderless
+
+     * - `Hexiamonds <hexiamonds.html>`_
+
+         .. image:: images/iamonds/hexiamonds-6x6-small.png
+            :target: hexiamonds.html
+            :class: borderless
+
+       - `Heptiamonds <heptiamonds.html>`_
+
+         .. image:: images/iamonds/heptiamonds-snowflake-2-small.png
+            :target: heptiamonds.html
+            :class: borderless
+
+       - `Polyiamonds <polyiamonds.html>`_
+
+         .. image:: images/iamonds/one-sided-polyiamonds-12345-semi-regular-hexagon-4x2-small.png
+            :target: polyiamonds.html
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polyiamonds <polyiamonds-intro.html>`_
+  * `Notes on Polyiamonds <polyiamond-notes.html>`_
+
+* `Polyhexes <polyhexes.html>`_ (& `pentahexes`_)
+
+  .. list-table::
+     :class: borderless
+
+     * - `Tetrahexes <polyhexes.html#tetrahexes>`_
+
+         .. image:: images/hexes/tetrahex-coin-small.png
+            :target: polyhexes.html#tetrahexes
+            :class: borderless
+
+       - `Pentahexes <pentahexes.html>`_
+
+         .. image:: images/hexes/pentahex-15x11-trapezium-small.png
+            :target: pentahexes.html
+            :class: borderless
+
+       - Polyhexes_
+
+         .. image:: images/hexes/polyhex-5x8-small.png
+            :target: polyhexes.html
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polyhexes <polyhexes-intro.html>`_
+  * `Notes on Polyhexes <polyhex-notes.html>`_
+
+* `Polycubes <polycubes.html>`_ (incl. `solid pentominoes`_ & `pentacubes`_)
+
+  .. list-table::
+     :class: borderless
+
+     * - `Tetracubes <polycubes.html#tetracubes>`_
+
+         .. image:: images/cubes/tetracubes-2x4x4-small.png
+            :target: polycubes.html#tetracubes
+            :class: borderless
+
+       - `Soma Cubes <polycubes.html#soma-cubes>`_
+
+         .. image:: images/cubes/soma-crystal-small.png
+            :target: polycubes.html#soma-cubes
+            :class: borderless
+
+     * - `Solid Pentominoes <solid-pentominoes.html>`_
+
+         .. image:: images/cubes/solid-pentominoes-6x6x6-crystal-1-small.png
+            :target: solid-pentominoes.html
+            :class: borderless
+
+       - `Pentacubes <pentacubes.html>`_
+
+         .. image:: images/cubes/pentacubes-great-wall-small.png
+            :target: pentacubes.html
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polycubes <polycubes-intro.html>`_
+  * `Notes on Polycubes <polycube-notes.html>`_
+  * `An Introduction to Polyominoes <polyominoes-intro.html>`_
+  * `Notes on Polyominoes <polyomino-notes.html>`_
+
+* `Polysticks <polysticks.html>`_
+
+  .. list-table::
+     :class: borderless
+
+     * - `Tetrasticks <polysticks.html#tetrasticks>`_
+
+         .. image:: images/sticks/tetrasticks-6x6-small.png
+            :target: polysticks.html#tetrasticks
+            :class: borderless
+
+       - Polysticks_
+
+         .. image:: images/sticks/polysticks-1234-3x7-diamond-lattice-small.png
+            :target: polysticks.html#polysticks-of-order-1-through-4
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polysticks <polysticks-intro.html>`_
+  * `Notes on Polysticks <polystick-notes.html>`_
+
+* `Polytrigs (triangular-grid polysticks) <polytrigs.html>`_
+
+  .. list-table::
+     :class: borderless
+
+     * - `Tritrigs <polytrigs.html#tritrigs>`_
+
+         .. image:: images/trigs/tritrigs-hex-3x1-ring-small.png
+            :target: polytrigs.html#tritrigs
+            :class: borderless
+
+       - `Polytrigs
+         <polytrigs.html#polytrigs-of-order-1-through-3>`_
+
+         .. image:: images/trigs/polytrigs-123-4x3-small.png
+            :target: polytrigs.html#polytrigs-of-order-1-through-3
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polytrigs <polytrigs-intro.html>`_
+  * `Notes on Polytrigs <polytrig-notes.html>`_
+
+* `Polytwigs (hexagonal-grid polysticks) <polytwigs.html>`_
+
+  .. list-table::
+     :class: borderless
+
+     * - `Pentawigs <polytwigs.html#pentatwigs>`_
+
+         .. image:: images/twigs/pentatwigs-triangle-small.png
+            :target: polytwigs.html#pentatwigs
+            :class: borderless
+
+       - `Polytwigs
+         <polytwigs.html#polytwigs-of-order-1-through-4>`_
+
+         .. image:: images/twigs/polytwigs-1234-hex-1-small.png
+            :target: polytwigs.html#polytwigs-of-order-1-through-4
+            :class: borderless
+
+  Also see:
+
+  * `An Introduction to Polytwigs <polytwigs-intro.html>`_
+  * `Notes on Polytwigs <polytwig-notes.html>`_
+
+* Special collections:
+
+  * `X's from G4GX: Gathering for Gardner 10 <g4gX.html>`_
+
+    .. image:: images/trigs/one-sided-polytrigs-123-x-1-small.png
+       :target: g4gX.html
+       :class: borderless
+
+    Also, `my talk presented at G4G10 <g4g10-talk.html>`__ and `my
+    account of G4G10 (blog article, off-site)
+    <http://www.artima.com/weblogs/viewpost.jsp?thread=341893>`__.
+
+
+.. |---| unicode:: U+2014  .. em dash
+   :trim:
+.. |c| unicode:: U+00A9 .. copyright sign
+.. |x| unicode:: U+00D7 .. multiplication sign
+   :trim:
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 70
+   End:

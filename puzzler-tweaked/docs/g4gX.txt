@@ -1,0 +1,231 @@
+.. -*- coding: utf-8 -*-
+
+==========================================
+ X’s from G4G10: Gathering for Gardner 10
+==========================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2016-08-22 07:57:53 -0500 (Mon, 22 Aug 2016) $
+:Revision: $Revision: 629 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: © 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+
+I was honoured to be invited to the `10th Gathering for Gardner
+<http://gathering4gardner.org/>`_, a biennial conference for recreational
+mathematics, magic, puzzles, and philosophy, which took place from
+March 28 to April 1, 2012.  I gave a talk entitled “`Polyform Puzzler,
+New Polyforms, and Recent Results`_”, a whirlwind introduction to this
+project, two new polyforms, and some new puzzles designed specially
+for the event.
+
+The theme of the event was “10” and “X”, so I designed X-shaped
+puzzles for each of the polyform families supported by Polyform
+Puzzler.
+
+
+.. sidebar:: Also see:
+
+   * `Polyform Puzzler, New Polyforms, and Recent Results
+     <g4g10-talk.html>`_ (my talk from G4G10)
+   * `Polyform Puzzler: Puzzles & Solutions <puzzles.html>`_
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+
+   Off-site:
+
+   * `My account of G4G10 (blog article)
+     <http://www.artima.com/weblogs/viewpost.jsp?thread=341893>`_
+
+.. contents::
+
+
+Polyominoes
+===========
+
+Also see:
+    * `Polyomino Puzzles & Solutions <polyominoes.html>`__
+    * `Pentomino Puzzles & Solutions <pentominoes.html>`_
+    * `Solid Pentomino Puzzles & Solutions <solid-pentominoes.html>`__
+
+* Polyominoes of order 2 through 5: `178,355,676 solutions
+  <../solutions/ominoes/polyominoes-2345-x-1.txt>`__
+
+  .. image:: images/ominoes/polyominoes-2345-x-1.png
+
+
+Polyiamonds
+===========
+
+Also see:
+    * `Polyiamond Puzzles & Solutions <polyiamonds.html>`__
+    * `Hexiamond Puzzles & Solutions <hexiamonds.html>`_
+    * `Heptiamond Puzzles & Solutions <hexiamonds.html>`__
+
+* Polyiamonds of order 1 through 5: `1,857 solutions
+  <../solutions/iamonds/polyiamonds-12345-x-1.txt>`__
+
+  .. image:: images/iamonds/polyiamonds-12345-x-1.png
+
+* One-sided polyiamonds of order 1 through 5: `solutions incomplete
+  <../solutions/iamonds/one-sided-polyiamonds-12345-x-1.txt>`__
+
+  .. image:: images/iamonds/one-sided-polyiamonds-12345-x-1.png
+
+* Hexiamonds: `11 solutions <../solutions/iamonds/hexiamonds-x-1.txt>`__
+
+  .. image:: images/iamonds/hexiamonds-x-1.png
+
+
+Polyhexes
+=========
+
+Also see:
+    * `Polyhex Puzzles & Solutions <polyhexes.html>`__
+    * `Pentahex Puzzles & Solutions <pentahexes.html>`__
+
+* One-sided polyhexes of order 1 through 4: `solutions incomplete
+  <../solutions/hexes/one-sided-polyhexes-1234-x-1.txt>`__
+
+  .. image:: images/hexes/one-sided-polyhexes-1234-x-1.png
+
+
+Polycubes
+=========
+
+Also see:
+    * `Polycube Puzzles & Solutions <polycubes.html>`__
+    * `Pentacube Puzzles & Solutions <hexcubes.html>`_
+    * `Solid Pentomino Puzzles & Solutions <solid-pentominoes.html>`__
+    * `Polyomino Puzzles & Solutions <polyominoes.html>`_
+    * `Pentomino Puzzles & Solutions <pentominoes.html>`_
+
+* Pentacubes: `solutions incomplete
+  <../solutions/cubes/pentacubes-x-1.txt>`__
+
+  .. image:: images/cubes/pentacubes-x-1.png
+
+* Polycubes of order 1 through 5:
+
+  .. list-table::
+     :class: borderless
+
+     * - .. figure:: images/cubes/polycubes-12345-x-1.png
+
+            `1: solutions incomplete
+            <../solutions/cubes/polycubes-12345-x-1.txt>`__
+
+       - .. figure:: images/cubes/polycubes-12345-x-2.png
+
+            `2: solutions incomplete
+            <../solutions/cubes/polycubes-12345-x-2.txt>`__
+
+       - .. figure:: images/cubes/polycubes-12345-x-3.png
+
+            `3: solutions incomplete
+            <../solutions/cubes/polycubes-12345-x-3.txt>`__
+
+     * - .. figure:: images/cubes/polycubes-12345-x-4.png
+
+            `4: solutions incomplete
+            <../solutions/cubes/polycubes-12345-x-4.txt>`__
+
+       - .. figure:: images/cubes/polycubes-12345-x-5.png
+
+            `5: solutions incomplete
+            <../solutions/cubes/polycubes-12345-x-5.txt>`__
+
+       - .. figure:: images/cubes/polycubes-12345-x-5-small.jpg
+            :target: images/cubes/polycubes-12345-x-5.jpg
+
+            Built with `Kadon's Super Deluxe Quintillions`_ and `Poly-4
+            Supplement`_.  Click for the full-size image.
+
+.. _Kadon's Super Deluxe Quintillions:
+   http://gamepuzzles.com/polycube.htm#SQd
+
+.. _Poly-4 Supplement: http://www.gamepuzzles.com/poly4.htm
+
+
+Polysticks
+==========
+
+Also see:
+    * `Polystick Puzzles & Solutions <polysticks.html>`__
+
+* One-sided tetrasticks:
+
+  .. list-table::
+     :class: borderless
+
+     * - .. figure:: images/sticks/one-sided-tetrasticks-x-1.png
+
+            `1: solutions incomplete
+            <../solutions/sticks/one-sided-tetrasticks-x-1.txt>`__
+
+       - .. figure:: images/sticks/one-sided-tetrasticks-x-2.png
+
+            `2: solutions incomplete
+            <../solutions/sticks/one-sided-tetrasticks-x-2.txt>`__
+
+
+Polytrigs
+=========
+
+Also see:
+    * `Polytrig Puzzles & Solutions <polytrigs.html>`__
+
+* One-sided polytrigs of order 1 through 3: `solutions incomplete
+  <../solutions/trigs/one-sided-polytrigs-123-x-1.txt>`__
+
+  .. image:: images/trigs/one-sided-polytrigs-123-x-1.png
+
+
+Polytwigs
+=========
+
+Also see:
+    * `Polytwig Puzzles & Solutions <polytwigs.html>`__
+
+* Pentatwigs: `32 solutions
+  <../solutions/twigs/pentatwigs-x-1.txt>`__
+
+  .. image:: images/twigs/pentatwigs-x-1.png
+
+* Hexatwigs:
+
+  .. list-table::
+     :class: borderless
+
+     * - .. figure:: images/twigs/hexatwigs-x-1.png
+
+            `1: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-1.txt>`__
+
+       - .. figure:: images/twigs/hexatwigs-x-2.png
+
+            `2: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-2.txt>`__
+
+     * - .. figure:: images/twigs/hexatwigs-x-3.png
+
+            `3: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-3.txt>`__
+
+       - .. figure:: images/twigs/hexatwigs-x-4.png
+
+            `4: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-4.txt>`__
+
+     * - .. figure:: images/twigs/hexatwigs-x-5.png
+
+            `5: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-5.txt>`__
+
+       - .. figure:: images/twigs/hexatwigs-x-6.png
+
+            `6: solutions incomplete
+            <../solutions/twigs/hexatwigs-x-6.txt>`__

@@ -1,0 +1,293 @@
+.. -*- coding: utf-8 -*-
+
+==================================
+ Polyominoes: Puzzles & Solutions
+==================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: © 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Pentominoes: Puzzles & Solutions <pentominoes.html>`_
+   * `Hexominoes: Puzzles & Solutions <hexominoes.html>`_
+   * `Solid Pentominoes: Puzzles & Solutions <solid-pentominoes.html>`_
+   * `An Introduction to Polyominoes <polyominoes-intro.html>`_
+   * `Notes on Polyominoes <polyomino-notes.html>`_
+   * `Polyform Puzzler: Puzzles & Solutions <puzzles.html>`_
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+     (`polyform details <FAQ.html#what-polyforms-are-there>`__,
+     `numbers of polyforms <FAQ.html#how-many-of-each-type-of-polyform-are-there>`__,
+     `interpreting solution files <FAQ.html#how-should-polyomino-solution-files-be-interpreted>`__)
+
+.. contents::
+
+
+Polyominoes of Order 1 Through 3
+================================
+
+This puzzle uses the 1 monomino, 1 domino, and 2 trominoes, for a
+total of 9 squares.
+
+* .. _polyominoes-123-square:
+
+  Square: `6 solutions <../solutions/ominoes/polyominoes-123-square.txt>`__
+
+  .. image:: images/ominoes/polyominoes-123-square.png
+
+  A trivial result, but the number of solutions comes in handy in more
+  complex puzzles like the `poly-5 diamond`_.
+
+
+Tetrominoes
+===========
+
+The 5 tetrominoes are well known from their use in the video game
+"Tetris". Tetris does not allow the pieces to be flipped
+(mirror-reflected); its pieces comprise the 7 "one-sided" tetrominoes.
+
+Due to a `parity imbalance`_, the 5 free tetrominoes cannot fit into a
+simple rectangle without introducing holes or other irregularities.
+
+.. _parity imbalance:
+   http://en.wikipedia.org/wiki/Tetromino#Tiling_the_rectangle_and_filling_the_box_with_2D_pieces
+
+However, if we consider a 5x4 rectangle and join the short sides
+together to form a cylindrical tube, we can find solutions:
+
+* 5x4 tube: `7 solutions
+  <../solutions/ominoes/tetrominoes-5x4-tube.txt>`__
+
+  .. image:: images/ominoes/tetrominoes-5x4-tube.png
+
+  In this solution, the 4x1 "I4" piece spans the join between right
+  and left edges. It appears to be chopped in two above, but if you
+  join the left & right edges, it forms one continuous piece. Here it
+  is, unwrapped:
+
+  .. image:: images/ominoes/tetrominoes-5x4-tube-unwrapped.png
+
+  See `this article by Alexandre Owen Muñiz
+  <http://puzzlezapper.com/blog/2013/05/a-polyformists-toolkit-practical-topology>`__
+  and `a video by Edo Timmermans
+  <http://www.youtube.com/watch?v=8ri88GpWYqE>`__.
+
+
+Polyominoes of Order 1 Through 4
+================================
+
+These puzzles use the 1 monomino, 1 domino, 2 trominoes, and 5
+tetrominoes, for a total of 29 squares.
+
+* Square-plus (design from Kadon / Kate Jones): `563 solutions
+  <../solutions/ominoes/polyominoes-1234-square-plus.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-square-plus.png
+
+* 7x3-plus (design by Dan Klarskov): `17 solutions
+  <../solutions/ominoes/polyominoes-1234-7x3-plus.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-7x3-plus.png
+
+* Skewered square (design by Dan Klarskov): `1,320 solutions
+  <../solutions/ominoes/polyominoes-1234-skewered-square.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-skewered-square.png
+
+* Skewered 9x3 rectangle (design by Dan Klarskov): `5,249 solutions
+  <../solutions/ominoes/polyominoes-1234-skewered-9x3.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-skewered-9x3.png
+
+* Skewered 7x3 rectangle: `747 solutions
+  <../solutions/ominoes/polyominoes-1234-skewered-7x3.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-skewered-7x3.png
+
+* Astroid (design from Kadon / Kate Jones): `18 solutions
+  <../solutions/ominoes/polyominoes-1234-astroid.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-astroid.png
+
+* 7x5 with cross-shaped hole (design by Dan Klarskov): `19 solutions
+  <../solutions/ominoes/polyominoes-1234-7x5-cross-hole.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-7x5-cross-hole.png
+
+* 7x4 plus one (design by Dan Klarskov): `1,522 solutions
+  <../solutions/ominoes/polyominoes-1234-7x4-plus-one.txt>`__
+
+  .. image:: images/ominoes/polyominoes-1234-7x4-plus-one.png
+
+  This is just a 7x4 rectangle using the polyominoes of order 2
+  through 4, plus the monomino separately.  I thought it was cute.
+
+
+One-Sided Polyominoes of Order 1 Through 4
+==========================================
+
+These puzzles use the 1 monomino, 1 domino, 2 trominoes, and 7
+tetrominoes, for a total of 37 squares.
+
+* Octagon: `solutions incomplete
+  <../solutions/ominoes/one-sided-polyominoes-1234-octagon.txt>`__
+
+  .. image:: images/ominoes/one-sided-polyominoes-1234-octagon.png
+
+
+One-Sided Polyominoes of Order 2 Through 4
+==========================================
+
+These puzzles use the 1 domino, 2 trominoes, and 7 tetrominoes, for a
+total of 36 squares.
+
+* Square: `7,252 solutions
+  <../solutions/ominoes/one-sided-polyominoes-234-square.txt>`__
+
+  .. image:: images/ominoes/one-sided-polyominoes-234-square.png
+
+* Octagon: `1,023 solutions
+  <../solutions/ominoes/one-sided-polyominoes-234-octagon.txt>`__
+
+  .. image:: images/ominoes/one-sided-polyominoes-234-octagon.png
+
+
+Polyominoes of Order 4 & 5 (Tetrominoes & Pentominoes)
+======================================================
+
+These puzzles use the 5 tetrominoes and 12 pentominoes, for a total of
+80 squares.
+
+Rectangles
+----------
+
+* 8x10: `solutions incomplete
+  <../solutions/ominoes/polyominoes-45-8x10.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-8x10.png
+
+* 5x16: `solutions incomplete
+  <../solutions/ominoes/polyominoes-45-5x16.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-5x16.png
+
+* 4x20: `solutions incomplete
+  <../solutions/ominoes/polyominoes-45-4x20.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-4x20.png
+
+* 9x9 Square (with a hole in the middle): `solutions incomplete
+  <../solutions/ominoes/polyominoes-45-square.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-square.png
+
+
+Miscellaneous
+-------------
+
+* Diamond: `7,302 solutions
+  <../solutions/ominoes/polyominoes-45-diamond.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-diamond.png
+
+* Aztec Diamond: `11,162 solutions
+  <../solutions/ominoes/polyominoes-45-aztec-diamond.txt>`__
+
+  .. image:: images/ominoes/polyominoes-45-aztec-diamond.png
+
+
+Polyominoes of Order 2 Through 5
+================================
+
+These puzzles use the 1 domino, 2 trominoes, 5 tetrominoes, and 12
+pentominoes, for a total of 88 squares.
+
+* X (`designed for G4G10 <g4gX.html>`_): `178,355,676 solutions
+  <../solutions/ominoes/polyominoes-2345-x-1.txt>`__
+
+  .. image:: images/ominoes/polyominoes-2345-x-1.png
+
+
+Polyominoes of Order 1 Through 5
+================================
+
+These puzzles use the 1 monomino, 1 domino, 2 trominoes, 5
+tetrominoes, and 12 pentominoes, for a total of 89 squares.
+
+* .. _poly-5 diamond:
+
+  Diamond (a.k.a. `Kadon's "Poly-5"
+  <http://www.gamepuzzles.com/polycub2.htm#P5>`_): `solutions
+  incomplete <../solutions/ominoes/polyominoes-12345-diamond.txt>`__
+
+  .. image:: images/ominoes/polyominoes-12345-diamond.png
+
+  The configuration below has the monomono, domino, & trominoes
+  restricted to a central 3×3 square, resulting in `4,579 unique
+  solutions for the outer ring of pentominoes & tetrominoes`__ alone.
+  Combined with `6 unique independent solutions for the inner
+  square`__, and 8 relative orientations (the inner square can rotate
+  to 4 different positions, and 4 more flipped), the grand total is
+  219,792 unique solutions (4,579 × 6 × 8).
+
+  __ ../solutions/ominoes/polyominoes-12345-diamond-2.txt
+  __ polyominoes-123-square_
+
+  .. image:: images/ominoes/polyominoes-12345-diamond-2.png
+
+  Also see the `poly-6 star`_ below.
+
+* Crosses:
+
+  .. list-table::
+     :class: borderless
+
+     * - .. figure:: images/ominoes/polyominoes-12345-cross-1.png
+
+         `solutions incomplete
+         <../solutions/ominoes/polyominoes-12345-cross-1.txt>`__
+         (design by Kadon)
+
+       - .. figure:: images/ominoes/polyominoes-12345-cross-2.png
+
+         `solutions incomplete
+         <../solutions/ominoes/polyominoes-12345-cross-2.txt>`__
+
+
+Polyominoes of Order 1 Through 6
+================================
+
+These puzzles use the 1 monomino, 1 domino, 2 trominoes, 5
+tetrominoes, 12 pentominoes, and 35 hexominoes, for a total of 299
+squares.
+
+* 23x13 rectangle: `solutions incomplete
+  <../solutions/ominoes/polyominoes-123456-23x13.txt>`__
+
+  .. image:: images/ominoes/polyominoes-123456-23x13.png
+
+* .. _poly-6 star:
+
+  Star (design by `Jack Wetterer and Chris Patterson, with symmetry
+  refinements by Darian Jenkins
+  <http://gamepuzzles.com/polystar.htm>`__, extending `Kadon's
+  "Poly-5"`_ a.k.a. `poly-5 diamond`_ above): `solutions incomplete
+  <../solutions/ominoes/polyominoes-123456-star.txt>`__
+
+  .. image:: images/ominoes/polyominoes-123456-star.png
+
+  As with the `poly-5 diamond`_ above, the various orders of
+  polyominoes occupy different areas.  The coloured version below
+  shows the monomino (black), domino (gray), and trominoes (purple)
+  fixed in a central 3×3 square, with the tetrominoes (blue) and
+  pentominoes (green) occupying a middle ring around the square.  The
+  hexominoes (red) occupy the outer ring of the configuration.
+
+  .. image:: images/ominoes/polyominoes-123456-star-coloured.png

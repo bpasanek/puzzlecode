@@ -1,0 +1,420 @@
+.. -*- coding: utf-8 -*-
+
+======================
+ Notes on Polyiamonds
+======================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2016-12-05 18:35:43 -0600 (Mon, 05 Dec 2016) $
+:Revision: $Revision: 644 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: © 1998-2016 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Hexiamond Puzzles & Solutions <hexiamonds.html>`_
+   * `Heptiamond Puzzles & Solutions <heptiamonds.html>`_
+   * `Polyiamond Puzzles & Solutions <polyiamonds.html>`_
+   * `An Introduction to Polyiamonds <polyiamonds-intro.html>`_
+   * `Polyform Puzzler: Puzzles & Solutions <puzzles.html>`_
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+     (`polyform details <FAQ.html#what-polyforms-are-there>`__,
+     `numbers of polyforms <FAQ.html#how-many-of-each-type-of-polyform-are-there>`__,
+     `interpreting solution files <FAQ.html#how-should-polyiamond-solution-files-be-interpreted>`__)
+
+.. contents::
+
+
+Polyform Counts
+===============
+
+Units are equilateral triangles.
+
+=====  ==========  ======  ======  ======  =========  ======  ======
+Order  Name        Free    Units   Sum     One-sided  Units   Sum
+=====  ==========  ======  ======  ======  =========  ======  ======
+1      moniamond   1       1       1       1          1       1
+2      diamond     1       2       3       1          2       3
+3      triamond    1       3       6       1          3       6
+4      tetriamond  3       12      18      4          16      22
+5      pentiamond  4       20      38      6          30      52
+6      hexiamond   12      72      110     19         114     166
+7      heptiamond  24      168     278     43         301     467
+8      octiamond   66      528     806     120        960     1427
+=====  ==========  ======  ======  ======  =========  ======  ======
+
+
+Parity Data
+===========
+
+In the table below, the "Min-D" and "Max-D" columns record,
+respectively, the minimum and maximum disparities that can be
+supported by these polyiamonds: the minimum and maximum discrepancies
+in parity of the puzzle's unit triangles, i.e. the minimum and maximum
+differences between the number of z=0 and z=1 triangles.
+
+=====  ==========  ======  ======  =====  =====  =========  ======  =====  =====
+Order  Name        Free    Units   Min-D  Max-D  One-sided  Units   Min-D  Max-D
+=====  ==========  ======  ======  =====  =====  =========  ======  =====  =====
+1      moniamond   1       1       1      1      1          1       1      1
+2      diamond     1       2       0      0      1          2       0      0
+3      triamond    1       3       1      1      1          3       1      1
+4      tetriamond  3       12      2      2      4          16      2      2
+5      pentiamond  4       20      0      4      6          30      0      6
+6      hexiamond   12      72      0      4      19         114     0      8
+7      heptiamond  24      168     0      26     43         301     1      45
+8      octiamond   66      528     ?      ?      120        960     ?      ?
+=====  ==========  ======  ======  =====  =====  =========  ======  =====  =====
+
+
+Shapes
+======
+
+Triangles::
+
+     T(n) = n²
+
+Hexagons::
+
+     H(n) = 6T(n) = 6n²
+
+Hexagrams::
+
+    Hg(n) = H(n) + 6T(n)
+          = 2H(n)
+          = 12n²
+
+==  ==========  =========  ==========
+n   n-Triangle  n-Hexagon  n-Hexagram
+==  ==========  =========  ==========
+1   1           6          12
+2   4           24         48
+3   9           54         108
+4   16          96         192
+5   25          150        300
+6   36          216        432
+7   49          294        588
+8   64          384        768
+9   81          486        972
+10  100         600        1200
+11  121         726        1452
+12  144         864        1728
+13  169         1014       2028
+14  196         1176       2352
+15  225         1350       2700
+16  256         1536       3072
+17  289         1734       3468
+18  324         1944       3888
+19  361         2166       4332
+20  400         2400       4800
+21  441         2646       5292
+22  484         2904       5808
+23  529         3174       6348
+24  576         3456       6912
+==  ==========  =========  ==========
+
+Parallelograms::
+
+    P(m,n) = 2mn
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+P    m=1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=1    2    4    6    8   10   12   14   16   18   20   22   24   26   28   30
+  2  ...    8   12   16   20   24   28   32   36   40   44   48   52   56   60
+  3  ...  ...   18   24   30   36   42   48   54   60   66   72   78   84   90
+  4  ...  ...  ...   32   40   48   56   64   72   80   88   96  104  112  120
+  5  ...  ...  ...  ...   50   60   70   80   90  100  110  120  130  140  150
+  6  ...  ...  ...  ...  ...   72   84   96  108  120  132  144  156  168  180
+  7  ...  ...  ...  ...  ...  ...   98  112  126  140  154  168  182  196  210
+  8  ...  ...  ...  ...  ...  ...  ...  128  144  160  176  192  208  224  240
+  9  ...  ...  ...  ...  ...  ...  ...  ...  162  180  198  216  234  252  270
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  ...  200  220  240  260  280  300
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  242  264  286  308  330
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  288  312  336  360
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  338  364  390
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  392  420
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  450
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Trapezoids::
+
+    Tr(m,n) = P(m,n) - T(n)
+            = 2mn - n²
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+Tr   m=2    3    4    5    6    7    8    9   10   11   12   13   14   15   16
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=1    3    5    7    9   11   13   15   17   19   21   23   25   27   29   31
+  2  ...    8   12   16   20   24   28   32   36   40   44   48   52   56   60
+  3  ...  ...   15   21   27   33   39   45   51   57   63   69   75   81   87
+  4  ...  ...  ...   24   32   40   48   56   64   72   80   88   96  104  112
+  5  ...  ...  ...  ...   35   45   55   65   75   85   95  105  115  125  135
+  6  ...  ...  ...  ...  ...   48   60   72   84   96  108  120  132  144  156
+  7  ...  ...  ...  ...  ...  ...   63   77   91  105  119  133  147  161  175
+  8  ...  ...  ...  ...  ...  ...  ...   80   96  112  128  144  160  176  192
+  9  ...  ...  ...  ...  ...  ...  ...  ...   99  117  135  153  171  189  207
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  ...  120  140  160  180  200  220
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  143  165  187  209  231
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  168  192  216  240
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  195  221  247
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  224  252
+ 15  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  255
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Elongated hexagons::
+
+    He(m,n) = 2P(m,n) + 2T(n)
+            = 4mn + 2n²
+            = 2n(2m + n)
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====  ====  ====  ====
+He   m=1    2    3    4    5    6    7    8    9    10    11    12    13    14
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====  ====  ====  ====
+n=1    6   10   14   18   22   26   30   34   38    42    46    50    54    58
+  2   16   24   32   40   48   56   64   72   80    88    96   104   112   120
+  3   30   42   54   66   78   90  102  114  126   138   150   162   174   186
+  4   48   64   80   96  112  128  144  160  176   192   208   224   240   256
+  5   70   90  110  130  150  170  190  210  230   250   270   290   310   330
+  6   96  120  144  168  192  216  240  264  288   312   336   360   384   408
+  7  126  154  182  210  238  266  294  322  350   378   406   434   462   490
+  8  160  192  224  256  288  320  352  384  416   448   480   512   544   576
+  9  198  234  270  306  342  378  414  450  486   522   558   594   630   666
+ 10  240  280  320  360  400  440  480  520  560   600   640   680   720   760
+ 11  286  330  374  418  462  506  550  594  638   682   726   770   814   858
+ 12  336  384  432  480  528  576  624  672  720   768   816   864   912   960
+ 13  390  442  494  546  598  650  702  754  806   858   910   962  1014  1066
+ 14  448  504  560  616  672  728  784  840  896   952  1008  1064  1120  1176
+ 15  510  570  630  690  750  810  870  930  990  1050  1110  1170  1230  1290
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====  ====  ====  ====
+
+Semiregular hexagons::
+
+    Hs(m,n) = T(m+2n) - 3T(n)
+            = m² + 4mn + 4n² - 3n²
+            = m² + 4mn + n²
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====
+Hs   m=2    3    4    5    6    7    8    9   10   11   12   13    14    15
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====
+n=1   13   22   33   46   61   78   97  118  141  166  193  222   253   286
+  2  ...   37   52   69   88  109  132  157  184  213  244  277   312   349
+  3  ...  ...   73   94  117  142  169  198  229  262  297  334   373   414
+  4  ...  ...  ...  121  148  177  208  241  276  313  352  393   436   481
+  5  ...  ...  ...  ...  181  214  249  286  325  366  409  454   501   550
+  6  ...  ...  ...  ...  ...  253  292  333  376  421  468  517   568   621
+  7  ...  ...  ...  ...  ...  ...  337  382  429  478  529  582   637   694
+  8  ...  ...  ...  ...  ...  ...  ...  433  484  537  592  649   708   769
+  9  ...  ...  ...  ...  ...  ...  ...  ...  541  598  657  718   781   846
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  ...  661  724  789   856   925
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  793  862   933  1006
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  937  1012  1089
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  1093  1174
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...   ...  1261
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ====  ====
+
+Chevrons::
+
+    C(m,n) = P(m,2n)
+           = 4mn
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+C    m=1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=1    4    8   12   16   20   24   28   32   36   40   44   48   52   56   60
+  2    8   16   24   32   40   48   56   64   72   80   88   96  104  112  120
+  3   12   24   36   48   60   72   84   96  108  120  132  144  156  168  180
+  4   16   32   48   64   80   96  112  128  144  160  176  192  208  224  240
+  5   20   40   60   80  100  120  140  160  180  200  220  240  260  280  300
+  6   24   48   72   96  120  144  168  192  216  240  264  288  312  336  360
+  7   28   56   84  112  140  168  196  224  252  280  308  336  364  392  420
+  8   32   64   96  128  160  192  224  256  288  320  352  384  416  448  480
+  9   36   72  108  144  180  216  252  288  324  360  396  432  468  504  540
+ 10   40   80  120  160  200  240  280  320  360  400  440  480  520  560  600
+ 11   44   88  132  176  220  264  308  352  396  440  484  528  572  616  660
+ 12   48   96  144  192  240  288  336  384  432  480  528  576  624  672  720
+ 13   52  104  156  208  260  312  364  416  468  520  572  624  676  728  780
+ 14   56  112  168  224  280  336  392  448  504  560  616  672  728  784  840
+ 15   60  120  180  240  300  360  420  480  540  600  660  720  780  840  900
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+Butterflies::
+
+    B(m,n) = 2Tr(m,n)
+           = 4mn - 2n²
+
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+B    m=2    3    4    5    6    7    8    9   10   11   12   13   14   15
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+n=1    6   10   14   18   22   26   30   34   38   42   46   50   54   58
+  2  ...   16   24   32   40   48   56   64   72   80   88   96  104  112
+  3  ...  ...   30   42   54   66   78   90  102  114  126  138  150  162
+  4  ...  ...  ...   48   64   80   96  112  128  144  160  176  192  208
+  5  ...  ...  ...  ...   70   90  110  130  150  170  190  210  230  250
+  6  ...  ...  ...  ...  ...   96  120  144  168  192  216  240  264  288
+  7  ...  ...  ...  ...  ...  ...  126  154  182  210  238  266  294  322
+  8  ...  ...  ...  ...  ...  ...  ...  160  192  224  256  288  320  352
+  9  ...  ...  ...  ...  ...  ...  ...  ...  198  234  270  306  342  378
+ 10  ...  ...  ...  ...  ...  ...  ...  ...  ...  240  280  320  360  400
+ 11  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  286  330  374  418
+ 12  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  336  384  432
+ 13  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  390  442
+ 14  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  448
+===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===  ===
+
+
+Potential Puzzles
+=================
+
+*Puzzles not otherwise noted below have not been implemented or solved.*
+
+*Initial numbers are the counts of unit equilateral triangles in the
+puzzles.*
+
+6: polyiamonds of order 1 to 3
+
+* H(1)
+* P(3,1)
+* B(2,1)
+
+18: polyiamonds of order 1 to 4
+
+* P(3,3)
+* He(4,1)
+* B(5,1)
+* hexgrid T(2) = 3H(1)
+
+22: one-sided polyiamonds of order 1 to 4
+
+* P(11,1)
+* He(5,1)
+* Hs(3,1)
+* B(6,1)
+
+38: polyiamonds of order 1 to 5
+
+52: one-sided polyiamonds of order 1 to 5
+
+* P(13,2)
+* Tr(14,2)
+* C(13,1)
+
+72: Hexiamonds
+
+* Potential:
+
+  * hexgrid Ri(8,2)
+  * hexgrid Rr(5,3)
+  * hexgrid C(4,2)
+
+* No solutions:
+
+  * P(12,3) (= Hexiamonds3x12)
+  * Tr(9,6) (= Hexiamonds6x9Trapezium)
+  * B(10,2) (= Hexiamonds4x10LongButterfly)
+  * H(4) - central H(2) (= HexiamondsRing)
+  * H(4) - pinwheel-6 hole (= HexiamondsHexagon3)
+  * H(4) - trefoil hole (4H(1); = HexiamondsHexagon4)
+  * H(4) - pinwheel-3 hole (= HexiamondsHexagon5)
+  * H(4) - trefoil hole (3C(2,1); = HexiamondsHexagon6)
+  * H(2) * 3 (= Hexiamonds3Hexagons)
+  * T(9) - T(3) (= HexiamondsTriangleRing_x, HexiamondsV_9x9)
+  * T(6) * 2 (= HexiamondsTwoTriangles)
+  * H(2) + 3P(4,2) (= HexiamondsSpinner_x1)
+  * H(2) + 6P(2,2) (= HexiamondsSpinner_x2)
+  * T(6) + 3P(3,2) (= HexiamondsSpinner_x3)
+  * hexgrid H(3) - H(2) (= HexiamondsHexgridHexagonRing_x)
+  * hexgrid Hg(2) - H(1) (= HexiamondsHexgridHexagramRing_x)
+  * hexgrid T(5) - T(2) (= HexiamondsHexgridTriangleRing_x1 & _x2)
+  * hexgrid P(6,2) (= HexiamondsHexgrid6x2_x)
+
+92: pentiamonds & hexiamonds
+
+- 4 congruent groups (1 pentiamond & 3 hexiamonds each) -- combined in
+  a symmetrical shape?
+
+  * H(4) - 4 units (e.g. 4 doubled hexiamonds less 1 unit each)
+  * T(10) - 8 units (e.g. 4(T(5) - 2))
+  * 4(H(2) - 1)
+  * P(7,7) - 6 units
+  * P(8,6) - 4 units (e.g. 4 doubled hexiamonds less 1 unit each;
+    4(P(4,3) - 1))
+
+108: 18 of 19 one-sided hexiamonds
+
+* Potential:
+
+110: polyiamonds of order 1 to 6
+
+114: One-sided hexiamonds
+
+* Potential:
+
+  * Tr(14,5) - 1
+  * B(8,6) - H(1)
+  * C(various) - H(1)
+  * He(14,2) - H(1)
+  * He(2,6) - H(1)
+  * Tr(11,10) - H(1)
+  * Tr(13,6) - H(1)
+  * P(15,4)/P(12,5)/P(10,6) - H(1)
+  * instead of H(1), B(2,1)
+  * hexgrid Rr(13,2)
+  * hexgrid Rs(4,3)
+  * hexgrid Rs(6,2)
+
+* No solutions:
+
+  * P(19,3) (= OneSidedHexiamonds19x3)
+
+166: one-sided polyiamonds of order 1 to 6
+
+168: Heptiamonds
+
+* Potential:
+
+  * hexgrid Rs(14,2)
+  * hexgrid Ri(11,3)
+  * hexgrid Ri(8,4)
+  * hexgrid C(4,4)
+  * more designs from Johannes H. Hindriks (see email 2012-05-30)
+
+* No solutions:
+
+  * hexgrid H(4) - 9 units, spread out (= HeptiamondsHexgridHexagon_x1)
+  * hexgrid 4H(2) trefoil (= HeptiamondsHexgridTrefoil_x1)
+  * hexgrid 4H(2) in a row (= HeptiamondsHexgridRosettes_x1)
+  * H(5) surrounded by 30 individual unit triangles, with hole(s) of
+    12 unit triangles (HeptiamondsJaggedHexagon_x1, _x2, _x3)
+
+278: polyiamonds of order 1 to 7
+
+* H(7) - T(4)
+* P(14,10) - 2 units
+* {C(14,5), C(10,7), C(7,10), C(5,14)} - 2 units
+
+301: One-sided heptiamonds
+
+* He(4,9) - 5 units
+* B(13,9) - 5 units
+
+467: one-sided polyiamonds of order 1 to 7
+
+* Hs(12,6) - 1 unit
+* C(13,9) - 1 unit
+* C(9,13) - 1 unit
+
+
+Links
+=====
+
+* `MathPuzzle.com <http://www.mathpuzzle.com/iamond.htm>`_
+
+* `The Poly Pages
+  <http://www.recmath.com/PolyPages/PolyPages/index.htm?Polyiamonds.htm>`__
+
+* `Kadon's Iamond Ring <http://www.gamepuzzles.com/esspoly.htm#IR>`__

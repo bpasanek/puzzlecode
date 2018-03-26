@@ -1,0 +1,225 @@
+.. -*- coding: utf-8 -*-
+
+=================================
+ Pentahexes: Puzzles & Solutions
+=================================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: |c| 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. image:: images/puzzler.png
+   :align: center
+
+.. sidebar:: Also see:
+
+   * `Polyhexes: Puzzles & Solutions <polyhexes.html>`_
+   * `An Introduction to Polyhexes <polyhexes-intro.html>`_
+   * `Notes on Polyhexes <polyhex-notes.html>`_
+   * `Polyform Puzzler: Puzzles & Solutions <puzzles.html>`_
+   * `Polyform Puzzler FAQ <FAQ.html>`_
+     (`polyform details <FAQ.html#what-polyforms-are-there>`__,
+     `numbers of polyforms <FAQ.html#how-many-of-each-type-of-polyform-are-there>`__,
+     `interpreting solution files <FAQ.html#how-should-polyhex-solution-files-be-interpreted>`__)
+
+.. contents::
+
+
+------------
+ Pentahexes
+------------
+
+There are 22 pentahexes totalling 110 unit hexagons.
+
+
+Parallelograms
+==============
+
+* 10x11 parallelogram: `solutions incomplete
+  <../solutions/hexes/pentahexes-10x11.txt>`__
+
+  .. image:: images/hexes/pentahexes-10x11.png
+
+* 5x22 parallelogram: `solutions incomplete
+  <../solutions/hexes/pentahexes-5x22.txt>`__
+
+  .. image:: images/hexes/pentahexes-5x22.png
+
+
+Trapezoids
+==========
+
+* 15x11 trapezoid: `solutions incomplete
+  <../solutions/hexes/pentahexes-15x11-trapezoid.txt>`__
+
+  .. image:: images/hexes/pentahexes-15x11-trapezoid.png
+
+* 5x24 trapezoid: `solutions incomplete
+  <../solutions/hexes/pentahexes-5x24-trapezoid.txt>`__
+
+  .. image:: images/hexes/pentahexes-5x24-trapezoid.png
+
+
+Hexagons
+========
+
+A minimal regular hexagon comprises 127 unit hexagons, 17 units too
+large for the pentahexes, requiring holes:
+
+.. list-table::
+   :class: borderless
+
+   * - .. figure:: images/hexes/pentahexes-hexagon-1.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagon-1.txt>`__
+
+     - .. figure:: images/hexes/pentahexes-hexagon-2.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagon-2.txt>`__
+
+   * - .. figure:: images/hexes/pentahexes-hexagon-3.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagon-3.txt>`__
+
+     - .. figure:: images/hexes/pentahexes-hexagon-4.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagon-4.txt>`__
+
+
+Triangles
+=========
+
+* A minimal triangle is 120 units, 10 units too large.  But
+  10 units makes a 4-unit-side triangle, so here are five variations
+  with centered 4-unit triangular holes and one with a different hole:
+
+  .. list-table::
+     :class: borderless
+
+     * - .. figure:: images/hexes/pentahexes-triangle-1.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-1.txt>`__
+
+       - .. figure:: images/hexes/pentahexes-triangle-2.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-2.txt>`__
+
+     * - .. figure:: images/hexes/pentahexes-triangle-3.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-3.txt>`__
+
+       - .. figure:: images/hexes/pentahexes-triangle-4.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-4.txt>`__
+
+     * - .. figure:: images/hexes/pentahexes-triangle-5.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-5.txt>`__
+
+       - .. figure:: images/hexes/pentahexes-triangle-6.png
+
+            `solutions incomplete
+            <../solutions/hexes/pentahexes-triangle-6.txt>`__
+
+* Two length-10 triangles add up to the right number of unit hexagons:
+  `solutions incomplete <../solutions/hexes/pentahexes-two-triangles.txt>`__
+
+  .. image:: images/hexes/pentahexes-two-triangles.png
+
+  If the two triangles are pushed together, solutions to this puzzle
+  are also solutions to the 10x11 parallelogram.
+
+  This design by Christoph M. Hoffman appeared in Martin Gardner's
+  "Mathematical Games" column, Scientific American, June 1967.
+
+
+Hexagrams
+=========
+
+A minimal hexagram is 121 units, 11 units too large.  These are
+variations with centered, symmetrical 11-unit holes:
+
+.. list-table::
+   :class: borderless
+
+   * - .. figure:: images/hexes/pentahexes-hexagram-1.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-1.txt>`__
+
+     - .. figure:: images/hexes/pentahexes-hexagram-2.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-2.txt>`__
+
+   * - .. figure:: images/hexes/pentahexes-hexagram-3.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-3.txt>`__
+
+     - .. figure:: images/hexes/pentahexes-hexagram-4.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-4.txt>`__
+
+   * - .. figure:: images/hexes/pentahexes-hexagram-5.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-5.txt>`__
+
+     - .. figure:: images/hexes/pentahexes-hexagram-6.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-6.txt>`__
+
+   * - .. figure:: images/hexes/pentahexes-hexagram-7.png
+
+          `solutions incomplete
+          <../solutions/hexes/pentahexes-hexagram-7.txt>`__
+
+     -
+
+
+----------------------
+ One-Sided Pentahexes
+----------------------
+
+* Triangle: `solutions incomplete
+  <../solutions/hexes/one-sided-pentahexes-triangle-1.txt>`__
+
+  .. image:: images/hexes/one-sided-pentahexes-triangle-1.png
+
+* 18x15 trapezoid: `solutions incomplete
+  <../solutions/hexes/one-sided-pentahexes-trapezoid-18x15.txt>`__
+
+  .. image:: images/hexes/one-sided-pentahexes-trapezoid-18x15.png
+
+* 20x11 trapezoid: `solutions incomplete
+  <../solutions/hexes/one-sided-pentahexes-trapezoid-20x11.txt>`__
+
+  .. image:: images/hexes/one-sided-pentahexes-trapezoid-20x11.png
+
+* 21x10 trapezoid: `solutions incomplete
+  <../solutions/hexes/one-sided-pentahexes-trapezoid-21x10.txt>`__
+
+  .. image:: images/hexes/one-sided-pentahexes-trapezoid-21x10.png
+
+* 30x6 trapezoid: `solutions incomplete
+  <../solutions/hexes/one-sided-pentahexes-trapezoid-30x6.txt>`__
+
+  .. image:: images/hexes/one-sided-pentahexes-trapezoid-30x6.png
+
+
+.. |c| unicode:: U+00A9 .. copyright sign

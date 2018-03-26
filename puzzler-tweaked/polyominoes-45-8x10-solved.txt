@@ -1,0 +1,6 @@
+
+Resuming session (203,775 solutions, 64,357,955 searches).
+
+solving Polyominoes45_8x10:
+
+203,775 solutions, 64,357,972 searches, duration 0:00:00.635372

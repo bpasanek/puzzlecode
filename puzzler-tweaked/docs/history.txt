@@ -1,0 +1,228 @@
+.. -*- coding: utf-8 -*-
+
+==========================
+ Polyform Puzzler History
+==========================
+
+:Author: David Goodger <goodger@python.org>
+:Date: $Date: 2015-02-24 14:21:02 -0600 (Tue, 24 Feb 2015) $
+:Revision: $Revision: 600 $
+:Web site: http://puzzler.sourceforge.net/
+:Copyright: |c| 1998-2015 by David J. Goodger
+:License: `GPL 2 <../COPYING.html>`__
+
+.. contents::
+
+
+Changes Since Release 1
+=======================
+
+**Polyform Puzzler now requires Python 2.5 or later.** Python 2.7.2 or
+later is recommended.
+
+* Added docs:
+
+  - `Hexominoes: Puzzles & Solutions <hexominoes.html>`_
+
+  - `My talk from G4G10: The 10th Gathering for Gardner <g4g10-talk.html>`_
+
+  - `X’s from G4G10 <g4gX.html>`_
+
+  - `Polytwigs: Puzzles & Solutions <polytwigs.html>`__
+
+  - `An Introduction to Polytwigs <polytwigs-intro.html>`__
+
+  - `Polytrigs: Puzzles & Solutions <polytrigs.html>`__
+
+  - `An Introduction to Polytrigs <polytrigs-intro.html>`__
+
+  - `An Introduction to Polysticks <polysticks-intro.html>`__
+
+  - `An Introduction to Polycubes <polycubes-intro.html>`__
+
+  - `An Introduction to Polyhexes <polyhexes-intro.html>`__
+
+  - `An Introduction to Polyominoes <polyominoes-intro.html>`__
+
+  - `An Introduction to Polyiamonds <polyiamonds-intro.html>`__
+
+  - `Notes on Polyominoes <polyomino-notes.html>`__
+
+  - `Notes on Polyiamonds <polyiamond-notes.html>`__
+
+  - `Notes on Polyhexes <polyhex-notes.html>`__
+
+  - `Notes on Polycubes <polycube-notes.html>`__
+
+  - `Notes on Polysticks <polystick-notes.html>`__
+
+  - `Notes on Polytrigs <polytrig-notes.html>`__
+
+  - `Notes on Polytwigs <polytwig-notes.html>`__
+
+* Added lots of puzzles, many listed below (but not all; I lost track):
+
+  - Hexominoes: several puzzles.
+
+  - Polytwigs (hexagonal-grid polysticks): new puzzle type.  Added
+    many puzzles.
+
+  - Polytrigs (triangular-grid polysticks): new puzzle type.
+    Initially added puzzles: 7 tritrigs, 11 one-sided tritrigs, 14
+    polytrigs of order 1 through 3, 21 one-sided polytrigs of order 1
+    through 3.
+
+  - (Square) Polysticks of order 1 through 4: 7x7 grid, 3x7 diamond
+    lattice.
+
+  - Tetrahexes: 4x7 parallelogram; clipped 3x10; "coin".
+
+  - Pentahexes: 10x11 & 5x22 parallelograms; 15x11 & 5x24 trapezia;
+    hexagons with holes; triangles; hexagrams.
+
+  - Polyhexes of order 1 through 4: 4x10 & 5x8 parallelograms.
+
+  - Polyhexes of order 1 through 5: 5x30, 6x25, & 10x15
+    parallelograms.
+
+  - Hexiamonds: 4x9 & 6x6 & 3x12 parallelograms; 4x11 trapezium; 4x10
+    elongated hexagon; 5x8 stacked long hexagons; 4x12 stacked
+    hexagons; 5x8 stacked long butterflies; 4x12 stacked butterflies;
+    snowflake; ring 2; crescents; 6x8 "coin"; trefoil; 12x3 & 4x9 &
+    6x6 chevrons; 6x6 & 3 types of 12x3 stacked chevrons; 7x8
+    irregular hexagon.
+
+  - One-sided hexiamonds: O'Beirne's hexagon, 8x3 [11x6] long hexagon,
+    11x3 [11x6] butterfly.
+
+  - Heptiamonds: 7x12, 6x14, 4x21, 3x28 parallelograms; 12x13, 6x17, &
+    4x23 trapezia; 4x21, 6x14, 12x7, 14x6, & 28x3 chevrons; 11x8 &
+    4x24 stacks; snowflakes; triangle with central hole; diamond ring;
+    regular & irregular hexagons; 4x22 long hexagon; 10x12 short
+    hexagon; irregular "Tenyo" shape; hexagrams; hexed triangle; short
+    hex ring; triangle ring; configurations of four 2x3 hexagons; sets
+    of two identical 6x2/8x8 semi-regular hexagons with triangular
+    holes.
+
+  - One-sided pentominoes: 3x30, 5x18, 6x15, 9x10.
+
+  - Tetracubes: 2x2x8 & 2x4x4.
+
+  - Pentacubes: 5x5x6 towers; 2x11x11 frame; 5x7x7 & 3x9x9 open boxes;
+    corner crystal; nine slices; great wall; 3x3x20 towers; 3x3x17
+    tower; 3x3x19 crystal tower; 5x9x9 fortress; 3x9x9 mound; 9x9x9
+    octahedral planes; 2x13x13 diamond frame; 2x3x2 chair; 11x11x5
+    pyramid with base; 5x7x5 cubbyholes; 9x9x5 cubbyholes; 7x7x5
+    block.
+
+  - Pentacubes Plus: 5x5x6, 3x5x10, 2x5x15, 2x3x25; 11x11x11
+    octahedral planes.
+
+  - Non-Convex Pentacubes: 2x5x14, 2x7x10, 4x5x7; zigzag 1 & 2.
+
+  - Solid pentominoes: 5x5x4, 4x4x6, & 3x3x10 steps; 4x4x8 crystal; 3
+    6x6x6 crystals; 3x5x7 slope.
+
+  - Pentominoes: 8x8 without corners, 8x8 with 2x2 square tetromino,
+    10x10 triangle with one omitted piece.
+
+  - One-sided tetrasticks: 5x5 diamond lattice, 8x8 grid with center
+    hole, 8x8 grid with one clipped corner, 8x8 grid with two clipped
+    corners (2 variations).
+
+  - Soma cubes: tunnel, screw, clip.
+
+  - Polycubes: Diabolical Cube & Nancy Sheldon's variations.
+
+  - Seven-segment digits polysticks.
+
+* Added ``-n``/``--stop-after`` option.
+
+* Added SVG image generation support for polyominoes, polyiamonds,
+  polyhexes, polycubes, and polysticks (``-s``/``--svg`` option).
+
+* Added the ability to read in an existing solution record for
+  rendering (``-r``/``--read-solution`` option).
+
+* Added unit tests.
+
+* Added "Polyform Puzzler: Puzzles & Solutions" document
+  (docs/puzzles.txt).
+
+* Removed ``puzzler/core.py``, moved its code into
+  ``puzzler.__init__.py``, and modified the front-end apps in ``bin/``
+  accordingly.
+
+* Simplified the front-end API.
+
+* Added the ability to automatically save & restore the session state
+  (``-S``/``--save-search-state`` option).
+
+* Added X3D model generation support for polycubes (``-x``/``--x3d``
+  option).
+
+* Added docs/extend.txt, "How to Extend Polyform Puzzler", and sample
+  code in docs/examples/.
+
+* Split docs/puzzles.txt up; it's now a table of contents linking to
+  docs for each puzzle type.
+
+* Converted polysticks to a pseudo-3D coordinate system
+  (puzzler.coordsys.SquareGrid3D etc.).
+
+* Renamed polystick puzzles to reflect the number of grid lines,
+  instead of the number of squares.
+
+* Added a Sudoku puzzle solver.
+
+* API changes: moved the "convert_matrix" function into the ExactCover
+  class and renamed as the "load_matrix" method; changed
+  ExactCover.__init__ to allow the matrix to be passed in at
+  instantiation time. Also improved test output.
+
+* Added a second implementation of the exact cover solver,
+  exact_cover_x2.py, based on `code by Ali Assaf
+  <http://www.cs.mcgill.ca/~aassaf9/python/algorithm_x.html>`__.
+
+* Added the ability to report on the current search state (partial
+  solution), useful for long-running puzzles
+  (``-R``/``--report-search-state``).
+
+* Split the enormous puzzler/puzzles.py module into a package of
+  smaller modules, in puzzler/puzzles/.
+
+
+Release 1 (2006-08-08)
+======================
+
+The first release of Polyform Puzzler.  Included 28 puzzles:
+
+* Pentominoes: 3x20, 4x15, 5x12, 6x10 rectangles; 8x8 square with
+  central 2x2 hole; 3x20 loop (short edges joined); 3x20 tube (long
+  edges joined).
+
+* Solid pentominoes: 2x3x10, 2x5x6, 3x4x5 solids; 
+  3x3x9, 3x5x7, 5x3x5, 6x3x4 ring walls.
+
+* Soma cubes: 3x3x3 cube, bathtub, cornerstone, crystal, curvedwall,
+  highwall, longwall, skew 1 & 2, sofa, steamer, steps
+
+* 6x6 Tetrasticks & 5x5 welded one-sided tetrasticks.
+
+For the pre-history, see section 1.2 of the `FAQ <FAQ.html>`_.
+
+
+.. |---| unicode:: U+2014  .. em dash
+   :trim:
+.. |c| unicode:: U+00A9 .. copyright sign
+.. |x| unicode:: U+00D7 .. multiplication sign
+   :trim:
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 70
+   End:
