@@ -2,8 +2,8 @@
 This is one of two GitHub repos for UVa's Puzzle Poetry group. The public-facing website, which showcases our puzzles, is at http://puzzlepoesis.org. The Jekyll code and Markdown files that generate that site are maintained at https://github.com/bpasanek/puzzlepoesis
 
 Packages and code in the following directories:
-`r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations
-`puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken.
+`r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations  
+`puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken.  
 `polycube` contains C code that we are experimenting with. It's hoped that the code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster.
 
 
