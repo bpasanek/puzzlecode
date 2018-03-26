@@ -1,0 +1,74 @@
+#!/usr/bin/perl -w
+
+use Tk;
+
+$box = 3;
+$margin = 5;
+$columns = int((8*70-$margin)/(10*$box+$margin));
+$rows = int((11*70-$margin)/(6*$box+$margin));
+print int(2339/$columns/$rows+0.99999999), " pages\n";
+
+$firstpent = 0;
+
+getpent();
+
+my $mw = MainWindow->new;
+
+$mw->Button(-text=>"Next",-command=>sub{$firstpent+=$columns*$rows;showpents()})->pack();
+$mw->Button(-text=>"Previous",-command=>sub{$firstpent-=$columns*$rows;showpents()})->pack();
+my $canvas = $mw->Canvas(-width=>$columns*10*$box+($columns+1)*$margin,
+                         -height=>$rows*6*$box+($rows+1)*$margin)->pack();
+
+$mw->Button(-text=>"PS",-command=>sub{$canvas->postscript(-file=>"set${firstpent}.ps")})->pack();
+
+showpents();
+
+MainLoop;
+
+
+sub getpent {
+  open(PENT,"./pentomino 4 3 |");
+  @pent = grep {!/Number/} split "\n\n", join '',<PENT>;
+  close(PENT);
+}
+
+my $currentpent;
+
+sub point {
+  my $x=$_[0];
+  my $y=$_[1];
+  return '.' if $x<0 || $x>=10 || $y<0 || $y>=6;
+  my @lines = split "\n",$pent[$currentpent];
+  return substr($lines[$y],$x,1);
+}
+
+sub showapent {
+  my $row=$_[0];
+  my $column=$_[1];
+
+  $currentpent = $firstpent + $row*$columns+$column;
+  return if !defined($pent[$currentpent]);
+  for ($y=0;$y<=6;$y++) {
+    for ($x=0;$x<=10;$x++) {
+      $canvas->createLine($margin*($column+1)+($column*10+$x)*$box,
+                          $margin*($row+1)+($row*6+$y)*$box,
+                          $margin*($column+1)+($column*10+$x)*$box,
+                          $margin*($row+1)+($row*6+$y+1)*$box)
+        if point($x,$y) ne point($x-1,$y);
+      $canvas->createLine($margin*($column+1)+($column*10+$x)*$box,
+                          $margin*($row+1)+($row*6+$y)*$box,
+                          $margin*($column+1)+($column*10+$x+1)*$box,
+                          $margin*($row+1)+($row*6+$y)*$box)
+        if point($x,$y) ne point($x,$y-1);
+    }
+  }
+}
+
+sub showpents {
+  $canvas->delete("all");
+  for ($row=0;$row<$rows;$row++) {
+    for ($column=0;$column<$columns;$column++) {
+      showapent($row,$column);
+    }
+  }
+}
