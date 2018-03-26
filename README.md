@@ -4,7 +4,7 @@ This is one of two GitHub repos for UVa's Puzzle Poetry group. The public-facing
 Packages and code in the following directories:  
 - `r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations.
 - `puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken (because I/Brad suck at coding).
-- `polyomino-0.4` Contains puzzle solvers: writted in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster, which is defined here: `polyomino/tetr_pentomino.c`
+- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers: these are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster, which is defined here: `polyomino/tetr_pentomino.c`
 - `polycube` also contains C code (C++) that we are experimenting with. 
 
 ### The _Increase_ Puzzle Project
