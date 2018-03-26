@@ -3,8 +3,8 @@ This is one of two GitHub repos for UVa's Puzzle Poetry group. The public-facing
 
 Packages and code in the following directories:  
 - `r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations.
-- `puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken (because I/Brad suck at coding).
-- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers: these are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster, which is defined here: `polyomino/tetr_pentomino.c`
+- `puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken (because I/Brad suck at coding). On Rivanna the solver runs by means of a slurm script and writes out to a file on Brad's scratch directory.
+- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers: these are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster, which is defined here: `polyomino/tetr_pentomino.c` Note, this code (like that above) has been altered so that it prints more compactly. Katherine Holcomb helped rewrite the code: mostly we commented out reporting on progress. The solver runs by means of a slurm script on Rivanna and writes out to scratch.
 - `polycube` also contains C code (C++) that we are experimenting with. 
 
 ### The _Increase_ Puzzle Project
