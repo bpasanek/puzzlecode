@@ -1,6 +1,12 @@
 # Puzzle Poesis
 This is one of two GitHub repos for UVa's Puzzle Poetry group. The public-facing website, which showcases our puzzles, is at http://puzzlepoesis.org. The Jekyll code and Markdown files that generate that site are maintained at https://github.com/bpasanek/puzzlepoesis
 
+Packages and code in the following directories:
+`r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations
+`puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken.
+`polycube` contains C code that we are experimenting with. It's hoped that the code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster.
+
+
 ### The _Increase_ Puzzle Project
 
 The puzzlecode repository houses code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. At present, this readme file narrowly addresses our efforts to convert a variety of sonnets into polyomino puzzles. Our specific, ongoing project aims at converting Shakespeare's "procreation" sonnets (Sonnets 1 to 17) into a sequence of puzzles. These will be laser cut from wood, acrylic, and other materials, and then assembled as an art-object titled _Increase_. 
