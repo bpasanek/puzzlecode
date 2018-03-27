@@ -1,15 +1,15 @@
 # Puzzle Poesis
-This is one of two GitHub repos for UVa's Puzzle Poetry group. The public-facing website, which showcases our puzzles, is at http://puzzlepoesis.org. The Jekyll code and Markdown files that generate that site are maintained at https://github.com/bpasanek/puzzlepoesis
+This is one of two GitHub repos for UVa's Puzzle Poetry group. Here are collected packages for solving polyomino puzzles. The public-facing website, which showcases our fabricated puzzles, is at http://puzzlepoesis.org. The Jekyll code and Markdown files that generate that site are maintained at https://github.com/bpasanek/puzzlepoesis. 
 
 Packages and code in the following directories:  
-- `r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations.
-- `puzzler-tweaked` is David Goodger's Python puzzle solver. I/Brad altered the code so that it prints solutions compactly. It works but the reporting is now broken (because I/Brad suck at coding). On Rivanna the solver runs by means of a slurm script and writes out to a file on Brad's scratch directory.
-- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers: these are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle on the Rivanna cluster, which is defined here: `polyomino/tetr_pentomino.c` Note, this code (like that above) has been altered so that it prints more compactly. Katherine Holcomb helped rewrite the code: mostly we commented out reporting on progress. The solver runs by means of a slurm script on Rivanna and writes out to scratch.
+- `r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations. Brad Pasanek wrote most of these, often with the help of Clay Ford. 
+- `puzzler-tweaked` is David Goodger's Python puzzle solver. With the help of Shane Lin and Brandon Walsh, I/Brad altered the code so that it prints out its solutions compactly. The scripts work but the reporting is now broken (because I/Brad suck at coding). On Rivanna the solver is run by means of a slurm script and writes out to a file on Brad's scratch directory.
+- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers, which are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle (defined here: `polyomino/tetr_pentomino.c`) on the Rivanna cluster. Note, this code, like that above, has been altered so that it prints more compactly. Katherine Holcomb helped rewrite the code: mostly we commented out reporting on progress. The solver runs by means of a slurm script on Rivanna and writes out to scratch.
 - `polycube` also contains C code (C++) that we are experimenting with. 
 
-### The _Increase_ Puzzle Project
+### Overview and The _Increase_ Puzzle Project
 
-The `puzzlecode` repository houses code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. At present, this readme file narrowly addresses our efforts to convert a variety of sonnets into polyomino puzzles. Our specific, ongoing project aims at converting Shakespeare's "procreation" sonnets (Sonnets 1 to 17) into a sequence of puzzles. These will be laser cut from wood, acrylic, and other materials, and then assembled as an art-object titled _Increase_. 
+The `puzzlecode` repository houses code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. At present, this readme file narrowly addresses our efforts to convert a sequence of sonnets into polyomino puzzles. Specifically, our project aims at converting Shakespeare's "procreation" sonnets (Sonnets 1 to 17) into a set of puzzles. These will be laser cut from wood, acrylic, and other materials, and then packaged as an art-object titled _Increase_. 
 
 Preparing these puzzles requires finding ways to pack pentominos into a sonnet-shaped frame, aligning words with the cuts that define the edges of the polyomino pieces. Working by hand, we've carved up several sonnets into a set of pentomino shapes but we hope to do better, finding all possible solutions to our sequence of sonnets, that is, all the ways that a given sonnet can be cut up into pentomino shapes. We are making progress. This semester and last we've been matched poem shapes to sestets with success, and we are currently working on generating a list of possible polyomino solutions for the octave.
 
@@ -21,38 +21,40 @@ An example of a puzzle created by hand (Sonnet 1):
 
 ![Sonnet 1, cut up by hand](/images/sonnet1.jpg)
 
-Finally, an example of a sonnet sestet (the last 6 lines of a sonnet) "piecifed," that is, matched against a solution to the polyomino problem that packs 12 pentominos into a 6x10 grid and laser cut out o acrylic. A human puzzle solver who is handed these pieces of poetry is asked to configure them into pentameter lines, the first of which will read "Then of thy beauty do I question make": 
+Finally, an example of a sonnet sestet (the last six lines of a sonnet) "piecifed," that is, matched against a solution to the polyomino problem that packs twelve pentominos into a 6x10 grid. A matched or matched solution guides our design process. After a poem is matched to a polyomino solution, the puzzle is mocked up in Adobe Illustrator, with text laid out on a raster layer and the pieces edges drawn a vector layer. Puzzles are then laser cut out of acrylic or wood. A human puzzle solver who is handed these pieces of poetry may be asked to arranged the pieces in six pentameter lines, the first of, if configured in Shakespeare's original ordering, will read "Then of thy beauty do I question make": 
 
 ![Sonnet 12, sestet, laser cut](/images/sonnet12-sestet-wb.jpg)
 
 ### Puzzle Solving: Overview
 
-Polyomino puzzles are solved computationally and therefore exhaustively, and the solutions to classic pentomino puzzles are available online. We have, for example, studied the solutions that are elegantly displayed and interlinked at https://isomerdesign.com/Pentomino/ and at https://gp.home.xs4all.nl/PolyominoSolver/Polyomino.html
+Many polyomino puzzles have been solved computationally and therefore exhaustively. The solutions to classic pentomino puzzles are available online. We have, for example, studied the solutions that are elegantly displayed and interlinked at https://isomerdesign.com/Pentomino/ and at https://gp.home.xs4all.nl/PolyominoSolver/Polyomino.html
 
-Puzzles are categorized by the pieces employed and the solution space (In one popular puzzle, the  solver is encouraged to fit pentominos and one square tetromino into an 8x8 frame). 
+Puzzles are categorized by the pieces employed and the area to be covered (In one popular puzzle, the  solver is encouraged to fit pentominos and one square tetromino into an 8x8 frame). 
 
-In the case of sonnets, we have a 14x10 structure (14 lines, 10 syllables per line), which doesn't correspond to an obvious puzzle. However, in well understood classic puzzle, the 12 free pentomino shapes are assembled into a 6x10 rectangle. English majors will remember that 6x10 is the shape of a sestet, the last six lines of a sonnet; and traditionally, the sestet (six lines of pentameter verse) provides an answer to the question posed in the first eight lines of the poem, the octave. It may then be ideal -- and cleverly meaningful -- to pack the octave and sestet of our sonnets separately, working within the sonnet form as best we are able. 
+In the case of sonnets, we have a 14x10 structure (14 lines, 10 syllables per line), which doesn't correspond to an obvious puzzle. However, in a well understood, classic puzzle, the twelve free pentomino shapes are assembled in a 6x10 rectangle. English majors will remember that 6x10 is the shape of a sestet, the last six lines of a sonnet; and traditionally, the sestet (six lines of pentameter verse) provides an answer to the question posed in the first eight lines of the poem, the octave. It may then be ideal -- and cleverly meaningful -- to pack, when possible, the octave and sestet of our sonnets separately, working within the sonnet form as best we are able. 
 
-What does this sort of packing will entail? For one thing, if the puzzle is constructed entirely from pentominos, pieces will have to appear more than once: at least once in the sestet, then most or all will appear again in the octave, a few pieces, two or three times more. While it would be most elegant to pack the octave with as many different shapes as will fit (each of the pentominos and each of the tetrominos); piecifying the puzzle in a way that reuses shapes makes the solving of the sonnet more challenging as pieces that belong in the sestet may be incongrously and erroneously inserted into the octave and vice versa.
+What does this sort of packing will entail? For one thing, if the puzzle is constructed entirely from pentominos, some pieces will have to appear more than once: at least once in the sestet, and then most or all will appear again in the octave--a few pieces, two or three times more. Perhaps it would be more elegant to pack the octave with as many different shapes as will fit (each of the pentominos and each of the tetrominos); in either case, piecifying the puzzle in a way that reuses shapes makes the solving of the sonnet more challenging as pieces that belong in the sestet may be incongrously and erroneously inserted into the octave and vice versa.
 
-We've found that a number of sestets--from Shakespeare, Christina Rossetti, Claude McKay, and others--are readily matched to the list of 2,339 solutions we downloaded from isomerdesign.com (Brad Pasanek, with the help of Clay Ford, has worked out a workflow for matching poems to puzzles in R see the folder `r-puzzlings` above for scripts and data.) The octave of a sonnet is another matter. There are 3,386,001,688 solutions to the polyomino problem that uses each pentomino and each tetromino once to tile an 8x10 grid. We don't have a list of solutions to this problem and will have to generate one.
+We've found that a number of sestets--from Shakespeare, Christina Rossetti, Claude McKay, and others--are readily matched to the list of 2,339 solutions we downloaded from isomerdesign.com (Brad Pasanek, with the help of Clay Ford, has written out a workflow for matching poems to puzzles in R. See the folder `r-puzzlings` above for scripts and data.) The octave of a sonnet is another matter. There are 3,386,001,688 solutions to the polyomino problem that uses each pentomino and each tetromino once to tile an 8x10 grid. We don't currently have a list of solutions to this problem and will have to generate one.
 
 #### Solving the Octave in Python
 
-We were experimenting with a Python solver that was designed by David J. Goodger and tweaked (slightly) by Brad Pasanek to print out puzzle solutions more compactly. On Rivanna, we've generated as many as 9 million solutions to the 8x10 pentomino-tetromino puzzle in 3 days. Unfortunately, this means it's going to take something like three years of computation to find all the possible solutions of the puzzle. Matching poems to these solutions will go more quickly, of course, but this is where we are stuck at the moment. Perhaps we will be able to parallelize our code and run several solvers at the same time; or perhaps we should start fresh with a different solving routine in a new language. (ARCS at UVa reports that changing from Python to C might help us gain an order of magnitude in speed.)
+We have experimented with a Python solver that was designed by David J. Goodger and tweaked (slightly) by Brad Pasanek to print out puzzle solutions more compactly. On Rivanna, we've generated as many as 9 million solutions to the 8x10 pentomino-tetromino puzzle in 3 days. Unfortunately, this means it's going to take at least three years of computation to find all the possible solutions of the puzzle. Matching poems to these solutions will go more quickly, of course, but this is where we are stuck at the moment. Perhaps we will be able to parallelize our code and run several solvers at the same time; or perhaps we should start fresh with a different solving routine in a new language.
 
 #### Solving the Octave in C
-We are now looking at two C solvers: `polyomino-0.4` and `polycube`
+ARCS at UVa reports that changing from Python to C might help us gain an order of magnitude in speed. And we've been trying out new packages. We are now looking at two C solvers: `polyomino-0.4` and `polycube`.
 
-Katherine Holcomb has adapted and uploaded here the polycube C++ code. It leverages four different puzzle-solving algorithms (DLX, 2. MCH, EMCH, de Bruijn). Unpack the tarball polycube.tgz for code, modules, and makefiles. This code originates from http://www.mattbusche.org/projects/polycube/
+Jacalyn Huband and Katherine Holcomb have been generously consulting with us as we prepare and run jobs on UVa's High Performance Computing Cluster. Most recently Katherine has helped Brad Pasanek and Timothy Schott rewrite some files in the `polyomino-0.4` package. On March 26, 2018, Katherine contributed mightily to our second attempt to generate the complete set of tilings for the 8x10 tetromino-pentomino problem. 
 
-Katherine includes the following instructions for working with this code on Rivanna:
+Katherine Holcomb has also adapted and uploaded here the `polycube` C++ code. It leverages four different puzzle-solving algorithms (DLX, 2. MCH, EMCH, de Bruijn) and should be an even faster application. This code originates from http://www.mattbusche.org/projects/polycube/. Unpack the tarball polycube.tgz for code, modules, and makefiles. 
+
+Katherine includes the following instructions for working with this code on Rivanna (these commands to appear in a slurm script):
 1. module load gcc/4.8.2  -- it *will not* link with the default 5.4.0 because boost was built with 4.8.2
-2. module load boost (optional since I put full paths into the makefile, but will be required to run it to set LD_LIBRARY_PATH)
+2. module load boost (she writes, "optional since I put full paths into the makefile, but will be required to run it to set LD_LIBRARY_PATH")
 3. cd src
 4. make
 
-We hope to rewrite one or both of these packages to solve sonnet-shaped puzzles. 
+We hope to rewrite one or both of these packages to solve sonnet-shaped puzzles. We have also been talking with Jacalyn Huband and Nathan Brunelle about writing our own solver, something that works from the poems, piecifying them directly.
     
 ### Notes, for Polycube
 
@@ -123,7 +125,7 @@ Each of the 17 sonnets has a different set of constraints on pentomino placement
 
 An extra headache: 7 sonnets (sonnets 3, 8, 9, 10, 11, 15, 17) have lines in them that have more than ten syllables. We'll need to adjust these lines by hand (eliding syllables or crowding them) before pursuing scripted solutions.
 
--- Brad Pasanek (2/13/2018, most recently revised March 26, 2018)
+-- Brad Pasanek (2/13/2018, most recently revised March 27, 2018)
 
 ### More Resources and references
 Discussion of pentomino puzzle solving at
@@ -137,3 +139,4 @@ David Goodger's Python solver: http://puzzler.sourceforge.net/README.html
 C++ code adapted from http://www.mattbusche.org/projects/polycube/  
 Stephen Montgomery-Smith's polyomino solver: https://faculty.missouri.edu/~stephen/software/#polyominoes  
 (Note, Montgomery-Smith seems to have solved the 8x10 puzzle and contributed the solution count to Gerard Putter's page)
+Advanced reading: Donald Knuth's article on "dancing links": https://www.ocf.berkeley.edu/~jchu/publicportal/sudoku/0011047.pdf
