@@ -1,35 +1,37 @@
 # Puzzle Poesis
 This is one of two GitHub repos for UVa's Puzzle Poetry group. Here are collected packages for solving polyomino puzzles. The public-facing website, which showcases our fabricated puzzles, is at http://puzzlepoesis.org. The Jekyll code and Markdown files that generate that site are maintained at https://github.com/bpasanek/puzzlepoesis. 
 
-Packages and code in the following directories:  
+Packages and code are organized in the following directories:  
 - `r-puzzlings` contains R scripts we use to match poems to solved puzzle configurations. Brad Pasanek wrote most of these, often with the help of Clay Ford. 
 - `puzzler-tweaked` is David Goodger's Python puzzle solver. With the help of Shane Lin and Brandon Walsh, I/Brad altered the code so that it prints out its solutions compactly. The scripts work but the reporting is now broken (because I/Brad suck at coding). On Rivanna the solver is run by means of a slurm script and writes out to a file on Brad's scratch directory.
-- `polyomino-0.4` Contains David Montgomery Smith's puzzle solvers, which are written in C. It's hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle (defined here: `polyomino/tetr_pentomino.c`) on the Rivanna cluster. Note, this code, like that above, has been altered so that it prints more compactly. Katherine Holcomb helped rewrite the code: mostly we commented out reporting on progress. The solver runs by means of a slurm script on Rivanna and writes out to scratch.
+- `polyomino-0.4` contains David Montgomery Smith's puzzle solvers, which are written in C. It's currently hoped that this code will help us solve the 8x10 pentomino-tetromino puzzle (defined here: `polyomino/tetr_pentomino.c`) on the Rivanna cluster. Note, this code, like Python package above, has been altered so that it prints more compactly. Katherine Holcomb helped revise the code: that is, mostly we commented out reporting on progress. The solver runs by means of a slurm script on Rivanna and writes out its solutions to Rivanna's scratch directory.
 - `polycube` also contains C code (C++) that we are experimenting with. 
 
-### Overview and The _Increase_ Puzzle Project
+Illustrator files are kept here and on Dropbox. Minutes from our weekly meetings are also archived here. 
 
-The `puzzlecode` repository houses code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. At present, this readme file narrowly addresses our efforts to convert a sequence of sonnets into polyomino puzzles. Specifically, our project aims at converting Shakespeare's "procreation" sonnets (Sonnets 1 to 17) into a set of puzzles. These will be laser cut from wood, acrylic, and other materials, and then packaged as an art-object titled _Increase_. 
+### Overview of the _Increase_ Puzzle Project
 
-Preparing these puzzles requires finding ways to pack pentominos into a sonnet-shaped frame, aligning words with the cuts that define the edges of the polyomino pieces. Working by hand, we've carved up several sonnets into a set of pentomino shapes but we hope to do better, finding all possible solutions to our sequence of sonnets, that is, all the ways that a given sonnet can be cut up into pentomino shapes. We are making progress. This semester and last we've been matched poem shapes to sestets with success, and we are currently working on generating a list of possible polyomino solutions for the octave.
+The `puzzlecode` repository houses code for solving poetry puzzles (polyomino puzzles) and related puzzle-poem games. At present, this readme file narrowly addresses our efforts to convert a sequence of sonnets into polyomino puzzles. Specifically, our project aims at converting Shakespeare's "procreation" sonnets (Sonnets 1 to 17) into a set of puzzles. These will be laser cut from wood, acrylic, and other materials, and then packaged as an art object titled _Increase_. 
+
+Designing these puzzles requires finding ways to pack pentominos into a sonnet-shaped frame, aligning words with the cuts that define the edges of the polyomino pieces. Working by hand, we've carved up several sonnets into a set of pentomino shapes but we hope to do better, finding all possible solutions to our sequence of sonnets, that is, all the ways that a given sonnet can be cut up into pentomino shapes. We are making progress. This semester and last we've been matched poem shapes to sestets with success, and we are currently working on generating a list of possible polyomino solutions for the octave.
 
 For reference, the complete set of pentominos appears below with the pieces labeled alphabetically:
 
 ![12 Pentominoes](/images/pentominoes.jpg)
 
-An example of a puzzle created by hand (Sonnet 1):
+An early sketch of a sonnet puzzle (Sonnet 1) worked out by hand on graph paper:
 
 ![Sonnet 1, cut up by hand](/images/sonnet1.jpg)
 
-Finally, an example of a sonnet sestet (the last six lines of a sonnet) "piecifed," that is, matched against a solution to the polyomino problem that packs twelve pentominos into a 6x10 grid. A matched or matched solution guides our design process. After a poem is matched to a polyomino solution, the puzzle is mocked up in Adobe Illustrator, with text laid out on a raster layer and the pieces edges drawn a vector layer. Puzzles are then laser cut out of acrylic or wood. A human puzzle solver who is handed these pieces of poetry may be asked to arranged the pieces in six pentameter lines, the first of, if configured in Shakespeare's original ordering, will read "Then of thy beauty do I question make": 
+Finally, an example of a sonnet sestet (in this case the last six lines of a Sonnet 12) "piecifed," that is, matched against a solution or solutions to the polyomino problem that packs twelve pentominos into a 6x10 grid. These matched solutions guide our design process. After a poem is matched to a polyomino solution, the puzzle is mocked up in Adobe Illustrator, with text laid out on a raster layer and the edges of the pieces drawn on a vector layer. Puzzles are then laser cut out of acrylic or wood. A human puzzle solver who is handed these pieces of poetry may be asked to arrange the pieces in six pentameter lines, the first of which, if configured in Shakespeare's original ordering, will read thus: "Then of thy beauty do I question make".
 
 ![Sonnet 12, sestet, laser cut](/images/sonnet12-sestet-wb.jpg)
 
 ### Puzzle Solving: Overview
 
-Many polyomino puzzles have been solved computationally and therefore exhaustively. The solutions to classic pentomino puzzles are available online. We have, for example, studied the solutions that are elegantly displayed and interlinked at https://isomerdesign.com/Pentomino/ and at https://gp.home.xs4all.nl/PolyominoSolver/Polyomino.html
+Many polyomino puzzles have been solved computationally and therefore exhaustively, and the solutions to classic pentomino puzzles are available online. We have, for example, studied the solutions that are elegantly displayed and interlinked at https://isomerdesign.com/Pentomino/ and at https://gp.home.xs4all.nl/PolyominoSolver/Polyomino.html
 
-Puzzles are categorized by the pieces employed and the area to be covered (In one popular puzzle, the  solver is encouraged to fit pentominos and one square tetromino into an 8x8 frame). 
+Puzzles are categorized by the pieces employed and the area to be covered (In one popular puzzle, the solver is encouraged to fit pentominos and one square tetromino into an 8x8 frame). 
 
 In the case of sonnets, we have a 14x10 structure (14 lines, 10 syllables per line), which doesn't correspond to an obvious puzzle. However, in a well understood, classic puzzle, the twelve free pentomino shapes are assembled in a 6x10 rectangle. English majors will remember that 6x10 is the shape of a sestet, the last six lines of a sonnet; and traditionally, the sestet (six lines of pentameter verse) provides an answer to the question posed in the first eight lines of the poem, the octave. It may then be ideal -- and cleverly meaningful -- to pack, when possible, the octave and sestet of our sonnets separately, working within the sonnet form as best we are able. 
 
